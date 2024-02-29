@@ -1,0 +1,102 @@
+<canvas width="500" height="500" id="screen" style="background-color: #9992e6;"></canvas>
+<script>
+    let canvas = document.getElementById('screen');
+    let ctx = canvas.getContext('2d');
+
+    const fps = 60;
+    setInterval(loop, 1000/fps);
+
+    let cameraYaw = 0;
+    let cameraOffset = [canvas.width/2, canvas.height/2]; // centers camera
+
+    let worldOffset = [0, 0];
+    let speed = 10;
+
+    let wires = [];
+
+    //shifts the world around the camera
+    function shiftWorld(x, y) {
+        worldOffset[0] += x;
+        worldOffset[1] += y;
+    }
+
+    class wire {
+        constructor (_ctx, _begin, _end, _stoke = '#000', _width = 1) {
+            this.ctx = _ctx;
+            this.begin = _begin;
+            this.end = _end;
+            this.stroke = _stoke;
+            this.width = _width;
+        }
+
+        draw() {
+            this.ctx.strokeStyle = this.stroke;
+            this.ctx.lineWidth = this.width;
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.begin[0] + worldOffset[0], this.begin[1] + worldOffset[1]);
+            this.ctx.lineTo(this.end[0] + worldOffset[0], this.end[1] + worldOffset[1]);
+            ctx.stroke();
+        }
+    }
+
+    function drawPlayer() {
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(cameraOffset[0]+10, cameraOffset[1]-10);
+        ctx.lineTo(...cameraOffset);
+        ctx.lineTo(cameraOffset[0]+10, cameraOffset[1]+10);
+        ctx.stroke();
+    }
+
+    function createSquare(x, y, width) {
+        wires.push(new wire(ctx, [x, y], [x+width, y]));
+        wires.push(new wire(ctx, [x+width, y], [x+width, y+width]));
+        wires.push(new wire(ctx, [x+width, y+width], [x, y+width]));
+        wires.push(new wire(ctx, [x, y+width], [x, y]));
+    }
+
+    /**
+     * Add wires to draw. Wires are what make up any shape.
+     */
+    createSquare(20, 20, 40);
+    createSquare(50, 107, 57);
+
+
+    //game logic loop
+    function loop() {
+        logic();
+        draw();
+    }
+
+    //draw every frame
+    function draw() {
+        //bckground
+        ctx.fillStyle = '#9992e6';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        //draw wires
+        wires.forEach(wire => wire.draw());
+
+        //player
+        drawPlayer();
+    }
+
+    //game logic
+    function logic() {
+        
+    }
+
+
+    document.addEventListener('keydown', checkKey);
+    function checkKey(evt) {
+        //console.log(evt);
+        switch (evt.key) {
+            case 'w': shiftWorld(0, speed); break;
+            case 'a': shiftWorld(speed, 0); break;
+            case 's': shiftWorld(0, -speed); break;
+            case 'd': shiftWorld(-speed, 0); break;
+        }
+    }
+
+</script>

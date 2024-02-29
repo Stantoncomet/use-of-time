@@ -1,0 +1,147 @@
+<html>
+<head>
+<style>
+
+
+</style>
+</head>
+<body>
+<p id="title">Snek, by OM</p>
+
+<canvas id="game" width="500" height="500">
+</body>
+
+
+<script>
+let canvas = document.getElementById("game");
+let ctx = canvas.getContext("2d");
+
+let fps = 1000;
+
+let sx = 0; //Math.floor(canvas.width/20/2)*20;
+let sy = 0; //Math.floor(canvas.height/20/2)*20;
+let direction = 1;
+let tails = [];
+let headPos;
+tails.push(new Tail(sx,sy));
+tails.push(new Tail(sx-20,sy));
+tails.push(new Tail(sx-40,sy));
+
+let ax;
+let ay;
+let applePos;
+spawnApple();
+
+
+window.onload = function() {
+	document.addEventListener("keydown", keydown);
+	//document.addEventListener("keyup", keyup);
+	setInterval(gameLoop, 1000/fps);
+	console.log("Window Loaded");
+}
+
+function keydown(evt) {
+	switch(evt.keyCode) {
+		case 38: direction = 0; break; //up
+		case 37: direction = 3; break; //left
+		case 40: direction = 2; break; //down
+		case 39: direction = 1; break; //right
+	}
+}
+
+
+function gameLogic() {
+
+ 	ctx.fillStyle = "#0F0";
+	ctx.fillRect(ax,ay,20,20);
+
+ 	headPos = "" + tails[0].x + tails[0].y;
+ 	applePos = "" + ax + ay;
+  
+ 	tails.unshift(new Tail(tails[0].x,tails[0].y));
+ 	if (headPos !== applePos) {
+  		tails.pop();
+ 	} else {
+
+      //tails.unshift(new Tail(tails[0].x,tails[0].y));
+    	console.log("youch!");
+    	spawnApple();
+	}
+
+	//movement
+	switch(direction) {
+		case 0: tails[0].y-=20; break;
+		case 1: tails[0].x+=20; break;
+		case 2: tails[0].y+=20; break;
+		case 3: tails[0].x-=20; break;
+	}
+
+	for (let i = 0; i < tails.length; i++) {
+		tails[i].display();
+	}
+	
+	//SNAKE WRAPPING
+	if (tails[0].x < 0 || tails[0].x > canvas.width-20 || tails[0].y < 0 || tails[0].y > canvas.height-20) {
+		console.log("out of bounds, wrapping...");
+		switch(direction) {
+			case 0: tails[0].y = canvas.height; break;
+			case 1: tails[0].x = 0; break;
+			case 2: tails[0].y = 0; break;
+			case 3: tails[0].x = canvas.width; break;
+	}
+	}
+
+
+
+
+}
+
+
+function gameLoop() {
+	ctx.fillStyle = "#000";
+	ctx.fillRect(0,0,canvas.width,canvas.height);
+	gameLogic();
+	if (tails[0].x == 480) {
+		if (direction == 2)
+			direction = 3;
+		else
+			direction = 2;
+	}
+	if (tails[0].x == 0) {
+		if (direction == 2)
+			direction = 1;
+		else
+			direction = 2;
+	}
+
+	//controlLogic();
+}
+
+
+
+
+function spawnApple() {
+	ax = Math.floor(Math.random()*(canvas.width/20))*20;
+ 	ay = Math.floor(Math.random()*(canvas.height/20))*20;
+}
+
+function Tail(_x,_y) {
+	this.x = _x;
+	this.y = _y;
+  
+	this.display = function() {
+		ctx.fillStyle = "#FFF";
+		ctx.fillRect(this.x,this.y,20,20);
+	}
+}
+
+
+
+
+
+
+
+
+
+</script>
+</html>
