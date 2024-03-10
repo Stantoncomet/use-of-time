@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, intial-scale=1">
+        <link rel="icon" type="image/x-icon" href="icon.png">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <title>Sound Reader v0.2</title>
+    </head>
+
+    <body>
+        <div id="menu">
+            <button id="refresh" onclick="loadAudio()">REFRESH AUDIO LIST</button>
+            <button id="choose-dir" onclick="chooseDir()">SELECT AUDIO FOLDER</button>
+        </div>
+        
+        <div class="popup" id="info-window">
+            <h1>Info</h1>
+            <p>Click <span class="button-span">SELECT AUDIO FOLDER</span> to select the folder in the same directory as this <span class="file-name">sound reader.html</span> file, containg your tracks.</p>
+            <p>Tracks in the <span class="file-name">audio</span> folder are divided among sub-directories, such as <span class="file-name">song</span>, or <span class="file-name">sound</span>.</p>
+            <p><span class="button-span">REFRESH AUDIO LIST</span> makes tracks you add or revome appear here.</p>
+            <p>Switching themes will stop any playing audio!</p>
+        </div>
+        <div id="corner">
+            <button id="theme-btn" onclick="switchTheme()">☷</button>
+            <button id="info-btn" onclick="info()">ⓘ</button>
+        </div>
+
+        <div id="library">
+            <!-- Will be populated by the JS script -->
+            <div class="track full-track">
+                <p>Select audio folder to populate library!</p>
+                <audio controls="true"></audio>
+            </div>
+        </div>
+
+
+    </body>
+</html>
