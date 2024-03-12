@@ -7,7 +7,7 @@
     setInterval(loop, 1000/fps);
 
     let cameraYaw = 0;
-    let cameraOffset = [canvas.width/2, canvas.height/2]; // centers camera
+    let cameraOffset = [canvas.width/3, canvas.height/3]; // centers camera
 
     let worldOffset = [0, 0];
     let speed = 10;
@@ -18,6 +18,11 @@
     function shiftWorld(x, y) {
         worldOffset[0] += x;
         worldOffset[1] += y;
+    }
+ 
+    //rotates world around the camera
+    function rotateWorld(degree) {
+     
     }
 
     class wire {
@@ -30,6 +35,15 @@
         }
 
         draw() {
+            //checks for lines out of screen, and doesn't draw them
+            if (this.begin[0] + worldOffset[0] > canvas.width ||
+                this.begin[0] + worldOffset[0] < 0 ||
+                this.begin[1] + worldOffset[1] > canvas.height ||
+                this.begin[1] + worldOffset[1] < 0 ||
+                this.end[0] + worldOffset[0] > canvas.width ||
+                this.end[0] + worldOffset[0] < 0 ||
+                this.end[1] + worldOffset[1] > canvas.height ||
+                this.end[1] + worldOffset[1] < 0) return;
             this.ctx.strokeStyle = this.stroke;
             this.ctx.lineWidth = this.width;
             this.ctx.beginPath();
@@ -84,7 +98,7 @@
 
     //game logic
     function logic() {
-        
+       
     }
 
 
@@ -96,6 +110,8 @@
             case 'a': shiftWorld(speed, 0); break;
             case 's': shiftWorld(0, -speed); break;
             case 'd': shiftWorld(-speed, 0); break;
+            case 'q': rotateWorld('cw'); break;
+            case 'e': rotateWorld('ccw'); break;
         }
     }
 
