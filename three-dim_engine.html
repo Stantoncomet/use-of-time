@@ -6,25 +6,45 @@
     const fps = 60;
     setInterval(loop, 1000/fps);
 
-    let cameraYaw = 90;
-    let cameraOffset = [canvas.width/2, canvas.height/2]; // centers camera
+    let cameraYaw = 0;
+    let cameraOffset = { x: canvas.width/2,
+                         y: canvas.height/2 }; // centers camera
 
-    let worldOffset = [0, 0];
+    let flx = 1; 
+    let fly = 1;
+    let worldOffset = { x: 0,
+                        y: 0 };
     let speed = 10;
 
     let wires = [];
 
     //shifts the world around the camera
     function shiftWorld(x, y) {
-        worldOffset[0] += x;
-        worldOffset[1] += y;
+        worldOffset.x += x;
+        worldOffset.y += y;
     }
  
     //rotates world around the camera
     function rotateWorld(degree) {
       switch (degree) {
         case 'cw': {
-         
+          if (cameraYaw == 0) {
+            fly = -1;
+            flx = 1;
+            cameraYaw = 90;
+          } else if (cameraYaw == 90) {
+            fly = -1;
+            flx = -1;
+            cameraYaw = 180;
+          } else if (cameraYaw == 180) {
+            fly = 1;
+            flx = -1;
+            cameraYaw = 270;
+          } else if (cameraYaw == 270) {
+            fly = 1;
+            flx = 1;
+            cameraYaw = 0;
+          }
           break;
         }
         case 'ccw': {
@@ -44,28 +64,43 @@
 
         draw() {
           // two ends of the wire
-          let drawnCoords = { begin: { x: this.begin[0] + worldOffset[0],
-                                       y: this.begin[1] + worldOffset[1] },
-                              end:   { x: this.end[0] +   worldOffset[0],
-                                       y: this.end[1] +   worldOffset[1] } }
+          let drawnCoords = { begin: { x: this.begin[0],
+                                       y: this.begin[1] },
+                              end:   { x: this.end[0],
+                                       y: this.end[1] } }
           //rotation stuff
           let tempVal; //used when copying/assigning new values
-          tempVal = drawnCoords.begin.y;
+          
+          /*tempVal = drawnCoords.begin.y;
           drawnCoords.begin.y = drawnCoords.begin.x;
           drawnCoords.begin.x = tempVal;
-          // tempVal = drawnCoords.end.y;
-          // drawnCoords.end.y = drawnCoords.end.x;
-          // drawnCoords.end.x = tempVal;
-         
+          
+          tempVal = drawnCoords.end.y;
+          drawnCoords.end.y = drawnCoords.end.x;
+          drawnCoords.end.x = tempVal;*/
+          
+          tempVal = drawnCoords.begin.x;
+          drawnCoords.begin.x = flx*(drawnCoords.begin.y - cameraOffset.y) + cameraOffset.x;
+          drawnCoords.begin.y = fly*(tempVal - cameraOffset.x) + cameraOffset.y;
+
+          tempVal = drawnCoords.end.x;
+          drawnCoords.end.x = flx*(drawnCoords.end.y - cameraOffset.y) + cameraOffset.x;
+          drawnCoords.end.y = fly*(tempVal - cameraOffset.x) + cameraOffset.y;
+          
+          drawnCoords.begin.x += worldOffset.x;
+          drawnCoords.begin.y += worldOffset.y;
+          drawnCoords.end.x += worldOffset.x;
+          drawnCoords.end.y += worldOffset.y;
+
           //checks for lines out of screen, and doesn't draw them
-          if (this.begin[0] + worldOffset[0] > canvas.width ||
-              this.begin[0] + worldOffset[0] < 0 ||
-              this.begin[1] + worldOffset[1] > canvas.height ||
-              this.begin[1] + worldOffset[1] < 0 ||
-              this.end[0] + worldOffset[0] > canvas.width ||
-              this.end[0] + worldOffset[0] < 0 ||
-              this.end[1] + worldOffset[1] > canvas.height ||
-              this.end[1] + worldOffset[1] < 0) console.log("out of bounds");//return;
+          if (this.begin[0] + worldOffset.x > canvas.width ||
+              this.begin[0] + worldOffset.x < 0 ||
+              this.begin[1] + worldOffset.y > canvas.height ||
+              this.begin[1] + worldOffset.y < 0 ||
+              this.end[0] + worldOffset.x > canvas.width ||
+              this.end[0] + worldOffset.x < 0 ||
+              this.end[1] + worldOffset.y > canvas.height ||
+              this.end[1] + worldOffset.y < 0) console.log("out of bounds");//return;
 
           this.ctx.strokeStyle = this.stroke;
           this.ctx.lineWidth = this.width;
@@ -80,9 +115,9 @@
         ctx.strokeStyle = '#000';
         ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.moveTo(cameraOffset[0]+10, cameraOffset[1]-10);
-        ctx.lineTo(...cameraOffset);
-        ctx.lineTo(cameraOffset[0]+10, cameraOffset[1]+10);
+        ctx.moveTo(cameraOffset.x+10, cameraOffset.y+20);
+        ctx.lineTo(cameraOffset.x, cameraOffset.y);
+        ctx.lineTo(cameraOffset.x-10, cameraOffset.y+20);
         ctx.stroke();
     }
 
