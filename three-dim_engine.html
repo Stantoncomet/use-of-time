@@ -24,7 +24,7 @@
     function rotateWorld(degree) {
       switch (degree) {
         case 'cw': {
-          
+         
           break;
         }
         case 'ccw': {
@@ -43,23 +43,36 @@
         }
 
         draw() {
-          let drawnCoords = { begin: [ this.begin[0] + worldOffset[0], this.begin[1] + worldOffset[1] ], end: [] }
-            //checks for lines out of screen, and doesn't draw them
-            if (this.begin[0] + worldOffset[0] > canvas.width ||
-                this.begin[0] + worldOffset[0] < 0 ||
-                this.begin[1] + worldOffset[1] > canvas.height ||
-                this.begin[1] + worldOffset[1] < 0 ||
-                this.end[0] + worldOffset[0] > canvas.width ||
-                this.end[0] + worldOffset[0] < 0 ||
-                this.end[1] + worldOffset[1] > canvas.height ||
-                this.end[1] + worldOffset[1] < 0) return;
-            
-            this.ctx.strokeStyle = this.stroke;
-            this.ctx.lineWidth = this.width;
-            this.ctx.beginPath();
-            this.ctx.moveTo(this.begin[0] + worldOffset[0], this.begin[1] + worldOffset[1]);
-            this.ctx.lineTo(this.end[0] + worldOffset[0], this.end[1] + worldOffset[1]);
-            ctx.stroke();
+          // two ends of the wire
+          let drawnCoords = { begin: { x: this.begin[0] + worldOffset[0],
+                                       y: this.begin[1] + worldOffset[1] },
+                              end:   { x: this.end[0] +   worldOffset[0],
+                                       y: this.end[1] +   worldOffset[1] } }
+          //rotation stuff
+          let tempVal; //used when copying/assigning new values
+          tempVal = drawnCoords.begin.y;
+          drawnCoords.begin.y = drawnCoords.begin.x;
+          drawnCoords.begin.x = tempVal;
+          // tempVal = drawnCoords.end.y;
+          // drawnCoords.end.y = drawnCoords.end.x;
+          // drawnCoords.end.x = tempVal;
+         
+          //checks for lines out of screen, and doesn't draw them
+          if (this.begin[0] + worldOffset[0] > canvas.width ||
+              this.begin[0] + worldOffset[0] < 0 ||
+              this.begin[1] + worldOffset[1] > canvas.height ||
+              this.begin[1] + worldOffset[1] < 0 ||
+              this.end[0] + worldOffset[0] > canvas.width ||
+              this.end[0] + worldOffset[0] < 0 ||
+              this.end[1] + worldOffset[1] > canvas.height ||
+              this.end[1] + worldOffset[1] < 0) console.log("out of bounds");//return;
+
+          this.ctx.strokeStyle = this.stroke;
+          this.ctx.lineWidth = this.width;
+          this.ctx.beginPath();
+          this.ctx.moveTo(drawnCoords.begin.x, drawnCoords.begin.y);
+          this.ctx.lineTo(drawnCoords.end.x, drawnCoords.end.y);
+          ctx.stroke();
         }
     }
 
