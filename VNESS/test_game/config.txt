@@ -1,0 +1,2 @@
+scene-width:400
+scene-height:300

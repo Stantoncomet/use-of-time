@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, intial-scale=1">
+        <link rel="icon" type="image/x-icon" href="icon.png">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <title>VNESS</title>
+    </head>
+
+    <body>
+        <div id="startup-msg">
+            <h1>Welcome to a Visual Novel Engine for Simple Stories, aka VNESS.</h1>
+            <p>Click <span class="button-span">SELECT GAME FOLDER</span> to select the folder in the same directory as this <span class="file-name">engine.html</span> file, containg your game data.</p>
+            <p>A game is broken into paths, each folder is a scene, containg the <span class="file-name">scene.png</span>, along with folders label numerically, one for each path that branches off of that scene.</p>
+            <p>Type numbers on your keyboard or press the buttons to select the options that appear.</p>
+            <p>For all the nerds out there, you can even make your own visual novels! <a href="">Learn more</a></p>
+        </div>
+
+        <div class="menu">
+            <button id="choose-dir" onclick="chooseDir()">SELECT GAME FOLDER   🚀</button>
+            <button onclick="loadScene('')">RESTART GAME</button>
+        </div>
+
+        <div id="frame">
+            <img id="scene" src="" width="400" height="300">
+            <p id="feedback">Enter an option</p>
+        </div>
+
+        <div class="">
+            <button class="path-btn" onclick="loadScene(scene_path+'0')">0</button>
+            <button class="path-btn" onclick="loadScene(scene_path+'1')">1</button>
+            <button class="path-btn" onclick="loadScene(scene_path+'2')">2</button>
+            <button class="path-btn" onclick="loadScene(scene_path+'3')">3</button>
+        </div>
+
+
+    </body>
+</html>

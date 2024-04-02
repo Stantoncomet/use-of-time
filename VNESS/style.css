@@ -1,0 +1,50 @@
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2vw;
+
+    background-color: black;
+}
+
+#startup-msg {
+    text-align: center;
+}
+#startup-msg h1 {
+    text-shadow: 0px 0px 20px #00f, 0px 0px 20px #00f, 0px 0px 20px #00f; 
+    color: white;
+}
+#startup-msg p {
+    text-shadow: 0px 0px 20px #f00, 0px 0px 20px #f00, 0px 0px 20px #f00; 
+    color: white;
+}
+
+.menu {
+    margin: 2vh;
+}
+
+#frame p {
+    text-align: center;
+    color: white;
+}
+
+button {
+    background-image: linear-gradient(rgb(161, 166, 170), rgb(44, 49, 54));
+    border-width: 0px;
+    border-color: blue;
+    border-radius: 0px;
+    padding: 10px;
+    font-size: medium;
+    font-weight: bold;
+    color: white;
+}
+.path-btn {
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
