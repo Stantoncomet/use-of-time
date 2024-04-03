@@ -1,0 +1,21 @@
+
+//Wierd equation for making number never reach your goal
+function showShop() {
+    const msg = [ "============[SHOP]============" ];
+    //msg.push(     "1> Stone....................5g");
+    shop_items.forEach((sale, index) => {
+        let line = index+1 + "> " + sale.item.name;
+        console.log(line.length)
+        // The dots between name and cost
+        for (let dots = 0; dots < msg[0].length - (line.length + sale.cost.toString().length + CURRENCY_PREFIX.length); dots++) {
+            line += ".";
+        }
+        line += sale.cost
+        line += CURRENCY_PREFIX;
+        //console.log(line);
+        msg.push(line);
+    })
+    msg.push("==============================");
+    //msg.push("Shopkeeper: What oh! Today is 'Apple Day'!");
+    msg.forEach(line => printToBox(line));
+}
