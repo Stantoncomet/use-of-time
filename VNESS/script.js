@@ -44,7 +44,7 @@ async function loadGame() {
     const scene_width = config_values.match(/(?<=scene-width:).*/g);
     const scene_height = config_values.match(/(?<=scene-height:).*/g);
 
-    scene.width = scene_width;
+    //scene.width = scene_width;
     scene.height = scene_height;
 }
 
