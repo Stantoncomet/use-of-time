@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<playlist xmlns="http://xspf.org/ns/0/" xmlns:vlc="http://www.videolan.org/vlc/playlist/ns/0/" version="1">
+	<title>Playlist</title>
+	<trackList>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/tempest/hid-song/preshow+intermission.mp3</location>
+			<duration>145163</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>0</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/Curtain%20Call.mp3</location>
+			<duration>123530</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>1</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/tempest/act1/%F0%9F%8C%A9%20Rolling%20Thunder.mp3</location>
+			<title>Rolling Thunder</title>
+			<creator>Act 1 Scene 1</creator>
+			<duration>122424</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>2</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/tempest/hid-song/dnd%20ambiance.mp3</location>
+			<duration>481620</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>3</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/tempest/hid-song/Relaxing%20Guitar%20Fireplace%20Music%20%F0%9F%94%A5%20Acoustic%20Instrumental%20Fireplace%20Ambience.mp3</location>
+			<duration>28800127</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>4</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/tempest/hid-song/SONG_001.AIF</location>
+			<duration>126455</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>5</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/tempest/hid-song/SONG_002.AIF</location>
+			<duration>70797</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>6</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/tempest/hid-song/SONG_003.AIF</location>
+			<duration>70890</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>7</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/tempest/hid-song/SONG_004.AIF</location>
+			<duration>56912</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>8</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/tempest/hid-song/005%20-%20ACT3%20SC3.AIF</location>
+			<duration>83011</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>9</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/tempest/hid-song/006%20-%20ACT4%20SC1.mp3</location>
+			<duration>56293</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>10</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/tempest/hid-song/SONG_006.AIF</location>
+			<duration>69520</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>11</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/tempest/hid-song/SONG_007.AIF</location>
+			<duration>179443</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>12</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/team4918/Desktop/The%20Tempest/tempest/hid-song/SONG_008.AIF</location>
+			<duration>257811</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>13</vlc:id>
+			</extension>
+		</track>
+	</trackList>
+	<extension application="http://www.videolan.org/vlc/playlist/0">
+		<vlc:item tid="0"/>
+		<vlc:item tid="1"/>
+		<vlc:item tid="2"/>
+		<vlc:item tid="3"/>
+		<vlc:item tid="4"/>
+		<vlc:item tid="5"/>
+		<vlc:item tid="6"/>
+		<vlc:item tid="7"/>
+		<vlc:item tid="8"/>
+		<vlc:item tid="9"/>
+		<vlc:item tid="10"/>
+		<vlc:item tid="11"/>
+		<vlc:item tid="12"/>
+		<vlc:item tid="13"/>
+	</extension>
+</playlist>

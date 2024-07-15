@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Life</title>
+</head>
+<body>
+    <header>
+        <h1>Life</h1>
+    </header>
+    <div id="grid">
+    </div>
+    <button onclick="simulate()">Simulate</button>
+
+</body>
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(112, 70, 70);
+    }
+    header {
+        background-color: forestgreen;
+        width: 100%;
+        text-align: center;
+        color: white;
+    }
+    #grid {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 50px;
+        width: 400px;
+        height: 400px;
+        background-color: forestgreen;
+        border: solid rgb(112, 70, 70);
+        border-width: 4px;
+    }
+    #grid div {
+        width: 38px;
+        height: 38px;
+        background-color: rgb(122, 122, 122);
+        border: solid rgb(85, 85, 85);
+        border-width: 1px;
+    }
+    #grid div:hover {
+        background-color: forestgreen;
+    }
+
+    .active {
+        background-color: yellow !important;
+    }
+    .dead {
+
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", e => {
+        let grid = document.getElementById('grid');
+
+        for (let i = 0; i < 100; i++) {
+            grid.appendChild(document.createElement('div'));
+        }
+
+        let cells = Array.from(document.querySelectorAll('#grid div'));
+
+        cells.forEach(cell => {
+            cell.addEventListener('click', e => {
+                console.log(cell);
+            })
+        })
+
+        console.log(cells);
+    })
+
+    function simulate() {
+        let cells = Array.from(document.querySelectorAll('#grid div'));
+
+        cells[0].classList.add('active');
+    }
+
+
+</script>
+</html>

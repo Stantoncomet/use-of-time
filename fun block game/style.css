@@ -1,0 +1,18 @@
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    margin: 0px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#screen {
+    background-color: gray;
+    width: 40vw;
+    height: 60vw;
+}

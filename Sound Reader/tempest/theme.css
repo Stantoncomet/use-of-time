@@ -1,0 +1,24 @@
+.sound {
+    background-color: lightgreen;
+}
+.song {
+    background-color: darkturquoise;
+}
+.raw {
+    background-color: lightcoral;
+}
+.thunder {
+    background-color: lightblue;
+}
+.act1, .act2, .act3, .act4 {
+    background-color: darkgray;
+}
+.act1 {
+    background-color: aqua;
+}
+.act4 {
+    background-color: lightcoral;
+}
+.act5 {
+    background-color: lightgreen;
+}

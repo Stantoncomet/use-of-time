@@ -46,6 +46,42 @@ body {
     margin: 10px;
 }
 
+#higher {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 1vh;
+    border-bottom: 1px solid lightgrey;
+}
+
+#pins {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#pins h1 {
+    font-size: 20px;
+  
+}
+
+.pin-btn {
+    width: 10px;
+    height: 10px;
+    padding: 0px;
+    background: 0;
+    border: 0;
+    
+    float:right;
+    
+}
+.pin-btn:hover {
+    background: 0;
+}
+.pin-btn:hover {
+    background: 0;
+}
+
 #library {
     display: flex;
     flex-direction: row;
@@ -56,7 +92,7 @@ body {
 .shelf {
     flex-direction: column;
     align-items: center;
-    margin: 1vh;
+    margin-top: 1vh;
 }
 
 .track {
@@ -66,30 +102,50 @@ body {
     border-radius: 10px;
     min-height: 100px;
     background-color: beige;
-    word-wrap: break-word;
-}
-.full-track {
-    width: 27vw;
-}
-.btn-track {
-    width: 18vw;
+    overflow: hidden;
+    
     display: block;
+    
+    
 }
 .track p {
     font-size: larger;
-    margin: 1vw;
+    margin: 0.5vw;
+    white-space: nowrap;
+}
+.gold {
+    /*indicate full-tracks can be clicked anywhere to play*/
+    border-color: black;
+    box-shadow: 0px 0px 10px black;
+}
+.full-track {
+    width: 20vw;
 }
 .full-track audio {
-    width: 24vw;
+    width: 100%;
 }
-
-.sound {
-    background-color: lightgreen;
+.btn-track {
+    margin: 0px;
+    width: 13vw;
+    display: block;
+    min-height: 10px !important;
+    padding: 0px;
+    word-wrap: normal;
+    
+    border-radius: 0px;
+    border-color: gray;
+    border-width: 1px;
+    
+    
 }
-.song {
-    background-color:darkturquoise
+.btn-track p {
+    margin: 0px;
+    margin-left: 1vw;
+    margin-top: .5vw;
 }
-
+.btn-track div {
+    height: 0px;
+}
 
 button {
     background-color: coral;
@@ -100,7 +156,8 @@ button {
     font-weight: bold;
 }
 button:hover {
-    background-color: rgb(238, 156, 126);
+    /*background-color: rgb(238, 156, 126);*/
+    filter: brightness(95%);
 }
 button:active {
     background-color: rgb(236, 120, 78);

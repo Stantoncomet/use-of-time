@@ -4,9 +4,16 @@
  * - shop
  * - shop-confirm
  */
-let input_mode = 'default';
+let setting = {
+    available_cmds: ['shop'],
+    args: []
+}
 
 // Known commands
+const play_commands = [
+    new Command('shop', ['store'], shop),
+    new Command('shop', ['store'], confirm),
+]
 const START_MSG = ["Welcome to a text-based game engine!", "Type 'help' for help."]
 const actions = {
 
@@ -18,25 +25,50 @@ function preProcessCmd(cmd = command) {
     command = ""; // Clear user input
     if (pCmd == "") { return; } // Don't process if command is empty
     
-    switch (input_mode) {
-        case 'default': {
-            processCmdDefault(pCmd);
-            break;
-        }
-        case 'shop': {
-            processCmdShop(pCmd);
-            break;
-        }
-        case 'shop-confirm': {
-            processCmdShopConfirm(cmd);
-            break;
+
+
+    if (setting.available_cmds.includes(pCmd)) {
+        switch (pCmd) {
+            case 'shop': {
+                shop();
+            }
+            case 'y': {
+                
+            }
         }
     }
 
-    processCmdAlwaysAvailable(pCmd);
+    // switch (input_mode) {
+    //     case 'default': {
+    //         processCmdDefault(pCmd);
+    //         break;
+    //     }
+    //     case 'shop': {
+    //         processCmdShop(pCmd);
+    //         break;
+    //     }
+    //     case 'shop-confirm': {
+    //         processCmdShopConfirm(cmd);
+    //         break;
+    //     }
+    // }
+
+    // processCmdAlwaysAvailable(pCmd);
 
 
     
+}
+
+
+function shop() {
+    input_mode = 'shop';
+    cmd_prefix = '<span class="green">Enter item to buy: </span><span class="user-input">';
+    showShop();
+    printToBox("Shopkeeper: What oh! Today is 'Apple Day'!");
+}
+
+function confirm() {
+
 }
 
 function processCmdDefault(cmd) {
@@ -75,9 +107,9 @@ function processCmdShop(cmd) {
     //showShop();
 }
 
-function processCmdShopConfirm(cmd) {
+function processCmdShopConfirm(cmd, item) {
     if (cmd == 'y' || cmd == 'yes') {
-
+        console.log(item);
     }
     input_mode = 'shop';
     cmd_prefix = '<span class="green">Enter item to buy: </span><span class="user-input">';
@@ -135,3 +167,6 @@ function noSuchCmd(cmd) {
     printToBox("Yeah, no such command as: "+cmd);
 }
 
+function setSetting(available_cmds, ...args) {
+
+}

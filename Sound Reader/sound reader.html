@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, intial-scale=1">
         <link rel="icon" type="image/x-icon" href="icon.png">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="tempest/theme.css">
         <script src="script.js"></script>
         <title>Sound Reader v0.2</title>
     </head>
@@ -19,14 +20,20 @@
             <h1>Info</h1>
             <p>Click <span class="button-span">SELECT AUDIO FOLDER</span> to select the folder in the same directory as this <span class="file-name">sound reader.html</span> file, containg your tracks.</p>
             <p>Tracks in the <span class="file-name">audio</span> folder are divided among sub-directories, such as <span class="file-name">song</span>, or <span class="file-name">sound</span>.</p>
-            <p><span class="button-span">REFRESH AUDIO LIST</span> makes tracks you add or revome appear here.</p>
-            <p>Switching themes will stop any playing audio!</p>
+            <p><span class="button-span">REFRESH AUDIO LIST</span> makes tracks you add or revome update here. It stops all playing audio.</p>
+            <p>Click <span class="button-span">&nbsp;☷&nbsp;</span> to toggle between detailed and compacted track views.</p>
+            <p>Clicking <span class="button-span">&nbsp;↻&nbsp;</span> stops and resets all tracks to zero time.</p>
         </div>
         <div id="corner">
+            <button id="zero-btn" onclick="zeroTracks()" >↻</button>
             <button id="theme-btn" onclick="switchTheme()">☷</button>
             <button id="info-btn" onclick="info()">ⓘ</button>
         </div>
-
+        <div id="higher">
+            <h1></h1>
+            <div id="pins">
+            </div>
+        </div>
         <div id="library">
             <!-- Will be populated by the JS script -->
             <div class="track full-track">
