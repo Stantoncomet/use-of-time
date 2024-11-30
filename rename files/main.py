@@ -20,7 +20,7 @@ target_files = list(target_files)
 print("Operating on files directly in \""+dir_path+"\" with the following types: "+str(target_exts).replace("[", "").replace("]", "").replace("'", ""))
 
 # Date patterns
-date_pattern = "%d-%m-%Y"
+date_pattern = "%m-%d-%Y"
 date_regex = r"\d*-\d*-\d* "
 
 operation = input("Welcome, please select an operation:\n1) Rename files to include creation date\n2) Undo rename\n")
@@ -65,4 +65,3 @@ match int(operation):
         undoRename()
     case _:
         exit()
-
