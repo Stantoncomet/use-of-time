@@ -4,7 +4,6 @@ import re
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-dir_path = os.path.dirname("/home/olive/Desktop/temp2/")
 files = os.listdir(dir_path)
 
 
@@ -13,6 +12,8 @@ target_exts = [".png", ".txt", ".mp3"]
 target_files = filter(lambda f: len(list(filter(lambda x: f.lower().endswith(x), target_exts))) > 0, files)
 target_files = list(target_files)
 #print(target_files)
+
+print("Operating on files directly in \""+dir_path+"\" with the following types: "+str(target_exts).replace("[", "").replace("]", "").replace("'", ""))
 
 # Date patterns
 date_pattern = "%d-%m-%Y"

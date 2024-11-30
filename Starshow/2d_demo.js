@@ -13,7 +13,7 @@ let Aliens = [];
 let lvl = 0;
 
 const ALIEN_LOADOUTS = [
-
+    new Entity(40, 40, )
 ]
 
 
@@ -47,7 +47,6 @@ function logicLoop() {
             Bullets.push(new Entity(Ship.x, Ship.y-Ship.hh+10, 4, 8, "white"));
         }
     }
-
 
     if (CURRENT_TIME%(FPS/7) > FPS/14) {
         Ship.y++;
