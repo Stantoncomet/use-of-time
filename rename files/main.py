@@ -1,9 +1,13 @@
+#!/usr/bin/env python3
 import os
 from datetime import datetime
 import re
 
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
+#dir_path = os.path.dirname(os.path.realpath(__file__))
+dir_path = input("Please input operating path: ")
+if not os.path.isdir(dir_path):
+    dir_path = "./"
 files = os.listdir(dir_path)
 
 
