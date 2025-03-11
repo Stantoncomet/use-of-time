@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stoichiometry</title>
+</head>
+<body>
+    <h1>Stoichiometry Claculator</h1>
+    <p>Input some variables, flick some levers, and watch the magic!</p>
+    <div id="main">
+        <input id="grams" placeholder="grams" size="3">
+        <div class="atom" id="atom1">
+            <input placeholder="atom1" size="10">
+            <input placeholder="count" size="5">
+        </div>
+        <div class="atom" id="atom2">
+            <input placeholder="atom2" size="10">
+            <input placeholder="count" size="5">
+        </div>
+        <button onclick="run()">brrr</button>
+        <p id="output">output</p>
+    </div>
+</body>
+
+<style>
+
+</style>
+
+<script>
+    const MOLE = 602*10**23;
+    let elements;
+    fetch('./periodic-table-lookup.json').then(response => response.json()).then(data => {elements = data; run()});
+
+    let atom1;
+    let output = document.getElementById('output');
+
+
+    function run() {
+        atom1 = document.getElementById('atom1').children[0].value;
+
+
+        
+        output.innerText = o;
+    }
+
+
+
+</script>
+
+</html>

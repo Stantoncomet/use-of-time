@@ -9,54 +9,105 @@ document.body.appendChild(canvas_ele);
  */
 var canvas = document.getElementById('gamefield');
 var ctx = canvas.getContext('2d');
+
+/**
+ * Constants/not to be changed during runtime by external scripts
+ */
+
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
 
+const c_TRANSPARENT = 'rgba(0,0,0,0)';
 
-
-// Display
-
-const FPS = 60;
+const FPS = 30;
+const TPS = 20;
 var CURRENT_TIME = 0;
+
+var DOWN_KEYS = [];
+var MOUSEDOWN = false;
+var MOUSEPOS = {
+    x: 0,
+    y: 0
+}
+
+
+
+/**
+ * Loops
+ */
 
 /**
  * 
- * @param {TimerHandler} loop_fn 
+ * @param {Function} loop_fn 
  * @param {number} delay 
  */
-function setGameLoop(loop_fn, delay=FPS) {
+function setLogicLoop(loop_fn, delay=1000/TPS) {
     setInterval(() => {
         loop_fn();
         CURRENT_TIME++;
     }, delay);
 }
 
+/**
+ * 
+ * @param {Function} loop_fn 
+ * @param {number} delay 
+ */
+function setDrawLoop(loop_fn, delay=1000/FPS) {
+    setInterval(() => {
+        loop_fn();
+    }, delay);
+}
 
-// Keyboard events
 
-var down_keys = [];
+
+/**
+ * Keyboard and mouse events
+ */
 
 document.addEventListener('keydown', e => {
-    if (down_keys.includes(e.key)) return;
-    down_keys.push(e.key);
+    if (DOWN_KEYS.includes(e.key)) return;
+    DOWN_KEYS.push(e.key);
 })
 document.addEventListener('keyup', e => {
-    down_keys = down_keys.filter(k => k != e.key);
+    DOWN_KEYS = DOWN_KEYS.filter(k => k != e.key);
 })
 
 function getDownKeys() {
-    return down_keys;
+    return DOWN_KEYS;
 }
 
-/**
- * 
- */
 function keyIsPressed(key) {
-    if (down_keys.includes(key)) return true;
+    if (DOWN_KEYS.includes(key)) return true;
     else return false;
 }
 
-// Simple drawings
+canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    MOUSEPOS.x = x;
+    MOUSEPOS.y = y;
+});
+
+canvas.addEventListener('mousedown', e => {
+    MOUSEDOWN = true;
+})
+canvas.addEventListener('mouseup', e => {
+    MOUSEDOWN = false;
+})
+canvas.addEventListener('click', e => {
+    onClick(MOUSEPOS);
+})
+
+function onClick() {
+    console.log('This code was ran because you clicked your mouse! To use this functionality yourself, create an "onClick()" function in your own script with your own code.');
+}
+
+
+/**
+ * Drawing helpers
+ */
 
 /**
  * Dras a rectangle with top-left position and dimentions.
@@ -95,8 +146,6 @@ function drawCircle(x, y, r, color="red", fill=true) {
         ctx.stroke();
 } 
 
-// Other drawings
-
 /**
  * Writes text to a position. Orientation: bottom-left;
  */
@@ -112,7 +161,11 @@ function putImage(src, x, y, w, h) {
     ctx.drawImage(img, x, y, w, h);
 }
 
-// Entity
+
+
+/**
+ * Object constructors and things
+ */
 
 class Block {
     constructor (x, y, width=32, height=32, color_a="red", color_b="blue") {
@@ -143,6 +196,49 @@ class Block {
     setPos(x, y) {
         this.x = x;
         this.y = y;
+    }
+
+    getN() {
+        return this.y-this.hh;
+    }
+    getE() {
+        return this.x+this.hw;
+    }
+    getS() {
+        return this.y+this.hh;
+    }
+    getW() {
+        return this.x-this.hw;
+    }
+
+    /**
+     * 
+     * @param {number} width 
+     * @param {number} height 
+     */
+    resizeBy(width, height = 'auto') {
+        if (height == 'auto') height = width;
+        this.x -= width/2;
+        this.y -= height/2;
+        this.width += width;
+        this.height += height;
+        this.hw = width/2; //half-width
+        this.hh = height/2; //half-height
+    }
+    
+    /**
+     * 
+     * @param {number} width 
+     * @param {number} height 
+     */
+    resizeTo(width, height = 'auto') {
+        if (height == 'auto') height = width;
+        this.x -= (width-this.width)/2;
+        this.y -= (height-this.height)/2;
+        this.width = width;
+        this.height = height;
+        this.hw = width/2; //half-width
+        this.hh = height/2; //half-height
     }
 }
 
