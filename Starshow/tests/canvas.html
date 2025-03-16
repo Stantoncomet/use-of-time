@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="game" width="400" height="400"></canvas>
+</body>
+
+<script>
+    /**
+     * @type {HTMLCanvasElement}
+     */
+    let canvas = document.getElementById('game');
+    let ctx = canvas.getContext('2d');
+
+    canvas.height
+
+    
+
+    let img = new Image();
+    img.src = './box.png';
+    
+
+    function gameLoop() {
+        //ctx.fillStyle = "#000"
+        ctx.fillRect(100, 100, 50, 50);
+        ctx.drawImage(img, 50, 50, 100, 100);
+    }
+
+    document.addEventListener('keydown', e => {
+        console.log(e.keycode)
+    })
+
+    setInterval(gameLoop, 1000/60)
+
+</script>
+
+<style>
+    body {
+        margin: 0px;
+        background-color: bisque;
+    }
+</style>
+
+</html>

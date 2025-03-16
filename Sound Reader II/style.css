@@ -69,15 +69,16 @@ body {
     align-content: start;
 }
 
-#topbar #tabs div {
+#topbar #tabs button {
     padding-left: 0.5em;
     padding-right: 0.5em;
 }
 
-#tabs div.selected {
+#tabs button.selected {
     background-color: rgb(10,10,20);
+    text-decoration: underline overline;
 }
-#tabs div:hover {
+#tabs button:hover {
     background-color: rgb(0,0,20);
 }
 
@@ -86,6 +87,19 @@ body {
 
     justify-content: center;
     align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+#topbar button {
+    background: none;
+    border: none;
+    color: white;
+    height: 35px;
+}
+
+#folder-input {
+    display: none;
 }
 
 
@@ -102,6 +116,10 @@ body {
 
     /* overflow: scroll; */
 
+
+}
+
+.page {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
@@ -109,7 +127,22 @@ body {
     align-items: baseline;
     align-content: start;
 
+    /* overflow: scroll; */
 
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+}
+
+.loaded-page {
+    visibility: visible;
+    width: auto;
+    height: 100%;
+}
+.unloaded-page {
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
 }
 
 .stack {

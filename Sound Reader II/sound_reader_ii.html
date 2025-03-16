@@ -19,49 +19,64 @@
 
      <div id="topbar">
         <div id="tabs">
-            <div class="selected"><p>Act 1</p></div>
-            <div><p>Act 2</p></div>
-            <div><p>Act 3</p></div>
-            <div><p>Act 4</p></div>
+            <button class="selected" onclick="loadPage('home', this)">Home</button>
+            <button onclick="loadPage('act1', this)">Act 1</button>
+            <!-- <button><p>➕</p></button> -->
         </div>
         <div id="menu">
-            <p>⚙️</p>
+            <label>
+                <input id="folder-input" type="file" webkitdirectory>
+                📂
+            </label>
+            <button>⚙️</button>
         </div>
      </div>
      
      <div id="desk">
-        <div class="stack">
-            <div class="label">
-                <p>Favorites</p>
+        <div id="home" class="page loaded-page">
+            <div class="stack">
+                <div class="label">
+                    <p>Welcome</p>
+                </div>
             </div>
-            <div class="track">
-                <p>hi</p>
-                <audio controls="true">h</audio>
-            </div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
         </div>
-        <div class="stack">
-            <div class="label">
-                <p>What</p>
+        <div id="act1" class="page">
+            <div class="stack">
+                <div class="label">
+                    <p>Favorites</p>
+                </div>
+                <div class="track">
+                    <p>hi</p>
+                    <audio src="./audio/Curtain Call.mp3"></audio>
+                    <button id="playpause">||</button>
+                    <input id="seek" type="range" max="100" value="0">
+                    <span id="duration">0:00</span>
+                </div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
             </div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
-            <div class="track"></div>
+            <div class="stack">
+                <div class="label">
+                    <p>What</p>
+                </div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+                <div class="track"></div>
+            </div>
         </div>
      </div>
 </body>
