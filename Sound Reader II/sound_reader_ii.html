@@ -12,15 +12,16 @@
      <div id="sidebar">
         <p>=</p>
         <div id="tree">
-            <p>act1...</p>
-            <p>act2...</p>
+            <!-- <p>act1...</p>
+            <p>act2...</p> -->
+            <p>side text woah look at me go</p>
         </div>
      </div>
 
      <div id="topbar">
         <div id="tabs">
             <button class="selected" onclick="loadPage('home', this)">Home</button>
-            <button onclick="loadPage('act1', this)">Act 1</button>
+            <button onclick="loadPage('homeless', this)">Homeless</button>
             <!-- <button><p>➕</p></button> -->
         </div>
         <div id="menu">
@@ -35,49 +36,57 @@
      <div id="desk">
         <div id="home" class="page loaded-page">
             <div class="stack">
-                <div class="label">
-                    <p>Welcome</p>
+                <div class="info">
+                    <h2>About</h2>
+                    <p>This is a tool developed for the sound techs of the <u>PTHS Theatre Department</u>!</p>
+                    <p>Its main purpose is to assist the process of playing audio tracks during shows. It was made in response the absurdity that is playing audio from File Explorer.</p>
+                    <audio id="test-track" src=""></audio>
+                </div>
+            </div>
+            <div class="stack">
+                <div class="info">
+                    <h2>Getting Started</h2>
+                    <p>Make sure you have put this file, <b>SoundReaderII.html</b>, in the same directory as your <b>audio</b> folder.</p>
+                    <p>Then, click the 📂 in the top right corner choose that audio folder.</p>
+                    <p>Subdirectories containing audio files are divided amongst tabs you can navigate through at the top of the page.</p>
+                    <p>Any audio not in a subdirectory will be in the <b>Homeless</b> tab.</p>
+                </div>
+            </div>
+            <div class="stack">
+                <div class="info">
+                    <h2>Theme</h2>
+                    <p><b>[Nightshade]</b></p>
+                    <p>(yeah you can't change this yet)</p>
                 </div>
             </div>
         </div>
-        <div id="act1" class="page">
+        <div id="homeless" class="page">
             <div class="stack">
                 <div class="label">
-                    <p>Favorites</p>
+                    <h2>Favorites</h2>
                 </div>
                 <div class="track">
                     <p>hi</p>
-                    <audio src="./audio/Curtain Call.mp3"></audio>
-                    <button id="playpause">||</button>
+                    <audio src="./audio/Curtain Call.mp3" controls></audio>
+                    <!-- <button id="playpause">||</button>
                     <input id="seek" type="range" max="100" value="0">
-                    <span id="duration">0:00</span>
+                    <span id="duration">0:00</span> -->
                 </div>
-                <div class="track"></div>
-                <div class="track"></div>
-                <div class="track"></div>
-                <div class="track"></div>
-                <div class="track"></div>
-                <div class="track"></div>
-                <div class="track"></div>
-                <div class="track"></div>
                 <div class="track"></div>
             </div>
             <div class="stack">
                 <div class="label">
-                    <p>What</p>
+                    <h2>What</h2>
                 </div>
-                <div class="track"></div>
-                <div class="track"></div>
-                <div class="track"></div>
-                <div class="track"></div>
-                <div class="track"></div>
-                <div class="track"></div>
-                <div class="track"></div>
                 <div class="track"></div>
                 <div class="track"></div>
                 <div class="track"></div>
             </div>
         </div>
+     </div>
+     <div id="toast" class="success">
+        <h1>Toast</h1>
+        <p>Hello World!</p>
      </div>
 </body>
 <script src="script.js"></script>

@@ -2,43 +2,47 @@ let Dude = new Player(WIDTH/2, HEIGHT/2, 10, 30);
 let P_SPEED = 2;
 
 let Box1 = new Entity(100, 100, 150, 100, "purple", "black");
-let Light = new Block(25, 25, 40, 40, "pink");
+let Light1 = new Block(25, 25, 40, 40, "pink");
+let Light2 = new Block(80, 25, 40, 40, "pink");
 
 
-function isInBox() {
+function isTouchingBox() {
     // COLLISIONS
     if ( Dude.getE() > Box1.getW() &&
          Dude.getW() < Box1.getE() &&
          Dude.getS() > Box1.getN() &&
          Dude.getN() < Box1.getS()
        ) {
-        Light.color_a = "green";
+        Light1.color_a = "green";
         if ( Dude.getN() < Box1.getS() &&
              Dude.getS() > Box1.getS()
            ) {
-            Light.color_b = "orange";
+            Light1.color_b = "orange";
         }
         if ( Dude.getW() < Box1.getE() &&
              Dude.getE() > Box1.getE()
            ) {
-            Light.color_b = "blue";
+            Light1.color_b = "blue";
         }
         
         return true;
     } else {
-        Light.color_a = "pink";
+        Light1.color_a = "pink";
         return false
     }
+}
 
-   if ( Dude.x+Dude.hw > Box1.x-Box1.hw &&
-        Dude.x-Dude.hw < Box1.x+Box1.hw &&
-        Dude.y+Dude.hh > Box1.y-Box1.hh &&
-        Dude.y-Dude.hh < Box1.y+Box1.hh
-    ) {
-        Light.color_a = "green";
+function isInBox() {
+    // COLLISIONS
+    if ( Dude.getE() < Box1.getE() &&
+         Dude.getW() > Box1.getW() &&
+         Dude.getS() < Box1.getS() &&
+         Dude.getN() > Box1.getN()
+       ) {
+        Light2.color_a = "green";
         return true;
     } else {
-        Light.color_a = "pink";
+        Light2.color_a = "pink";
         return false
     }
 }
@@ -65,6 +69,7 @@ function logicLoop() {
     // if (!isInBox()) {
     //     doBasicControls();
     // }
+    isTouchingBox();
     isInBox();
     doBasicControls();
 
@@ -74,7 +79,8 @@ function logicLoop() {
 
 function drawLoop() {
     drawBackground("bisque");
-    Light.draw(true);
+    Light1.draw(true);
+    Light2.draw(false);
     Box1.draw(true);
     Dude.draw(true);
     

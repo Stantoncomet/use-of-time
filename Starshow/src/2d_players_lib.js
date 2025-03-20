@@ -33,7 +33,7 @@ var MOUSEPOS = {
 
 
 /**
- * Loops
+ * Loops :)
  */
 
 /**
