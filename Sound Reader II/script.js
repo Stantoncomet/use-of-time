@@ -9,7 +9,6 @@ let audio_directory = "";
 const ValidSounds = ['mp3', 'wav', 'ogg'];
 
 
-
 AudioInput.addEventListener('change', async e => {
     await loadAudio();
 });
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async e => {
 })
 
 
-
+// Audio
 
 async function loadAudio() {
     console.log("SOUND LOADING IN PROGRESS");
@@ -129,6 +128,66 @@ async function loadAudio() {
     console.log("FINISHED LOADING SOUNDS");
 }
 
+function toggleAudio(track_play_btn) {
+    // Get the parent/whole track div, since track_play_btn is just the button element
+    let track_ele = track_play_btn.parentElement;
+
+    let duration_ele = track_ele.querySelector('.duration');
+
+    /**
+     * @type {HTMLInputElement}
+     */
+    let seeker_ele = track_ele.querySelector('.seeker');
+
+    /**
+     * @type {HTMLAudioElement}
+     */
+    let audio_ele = track_ele.querySelector('audio');
+    
+
+    // Update duration and seeker range
+    audio_ele.ontimeupdate = () => {
+        //ugh
+        seeker_ele.max = audio_ele.duration;
+
+        let time_s = "m:s";
+        time_s = time_s.replace("m", Math.floor(audio_ele.currentTime/60));
+        let secs = Math.floor(audio_ele.currentTime%60);
+        if (secs < 10) secs = "0"+secs;
+        time_s = time_s.replace("s", secs);
+
+        duration_ele.innerText = time_s;
+
+        // pause audio if end
+        if (audio_ele.currentTime >= audio_ele.duration) {
+            track_play_btn.innerText = "⯈";
+            audio_ele.pause()
+        }
+
+        // update seeker
+        seeker_ele.value = audio_ele.currentTime;
+
+        
+
+    }
+
+    seeker_ele.onchange = () => {
+        audio_ele.currentTime = seeker_ele.value;
+    }
+
+
+
+    // Update play button and audio
+    if (audio_ele.paused) {
+        track_play_btn.innerText = "⏸";
+        audio_ele.play();
+    } else {
+        track_play_btn.innerText = "⯈";
+        audio_ele.pause();
+    }
+}
+
+// Site strucure building
 
 function loadPage(page_id, page_tab) {
     // Loop through every page on desk and set as loaded or unloaded
@@ -197,34 +256,49 @@ function createTrack(page_id, stack_index=0, src="") {
     track_div.classList.add('track');
 
     // Contents
-    let name_p = document.createElement('p');
     let audio_e = document.createElement('audio');
+    let move_b = document.createElement('button');
+    let name_p = document.createElement('p');
+    let volume_b = document.createElement('button');
+    let playpause_b = document.createElement('button');
+    let seeker_i = document.createElement('input');
+    let duration_p = document.createElement('p');
 
-    name_p.innerText = file_name;
     audio_e.setAttribute('src', src);
-    //audio_e.setAttributeNode('controls');
+    move_b.innerText = "𝤺";
+    name_p.innerText = file_name;
+    volume_b.innerText = "🕪";
+    playpause_b.innerText = "⯈";
+    playpause_b.setAttribute('onclick', `toggleAudio(this)`);
+    seeker_i.setAttribute('type', 'range');
+    seeker_i.setAttribute('max', '100');
+    seeker_i.setAttribute('value', '0');
+    duration_p.innerText = "0:00";
+
+    move_b.classList.add('move');
+    name_p.classList.add('name');
+    volume_b.classList.add('volume');
+    playpause_b.classList.add('playpause');
+    seeker_i.classList.add('seeker');
+    duration_p.classList.add('duration');
+    //i hate this
+
+
+
     // Finally appened children
-    track_div.appendChild(name_p);
     track_div.appendChild(audio_e);
+    track_div.appendChild(move_b);
+    track_div.appendChild(name_p);
+    track_div.appendChild(volume_b);
+    track_div.appendChild(playpause_b);
+    track_div.appendChild(seeker_i);
+    track_div.appendChild(duration_p);
     // Get page, get array of all stacks, select stack with stack_index, append track
     document.getElementById(page_id).querySelectorAll('.stack')[stack_index].appendChild(track_div);
 }
 
 
-class Page {
-    constructor (page_id, tab_name=page_id) {
-        this.page_id = page_id;
-        this.tab_name = tab_name;
-        this.stacks = {};
-    }
-    addStack(label="New Stack") {
-        this.stacks.label
-    }
-
-    deploy() {
-
-    }
-}
+// Misc
 
 function waveToast(title, message, type='error') {
     Toast.querySelector('h1').innerHTML = title;

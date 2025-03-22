@@ -37,7 +37,7 @@
         <div id="home" class="page loaded-page">
             <div class="stack">
                 <div class="info">
-                    <h2>About</h2>
+                    <h1>About</h1>
                     <p>This is a tool developed for the sound techs of the <u>PTHS Theatre Department</u>!</p>
                     <p>Its main purpose is to assist the process of playing audio tracks during shows. It was made in response the absurdity that is playing audio from File Explorer.</p>
                     <audio id="test-track" src=""></audio>
@@ -45,7 +45,7 @@
             </div>
             <div class="stack">
                 <div class="info">
-                    <h2>Getting Started</h2>
+                    <h1>Getting Started</h1>
                     <p>Make sure you have put this file, <b>SoundReaderII.html</b>, in the same directory as your <b>audio</b> folder.</p>
                     <p>Then, click the 📂 in the top right corner choose that audio folder.</p>
                     <p>Subdirectories containing audio files are divided amongst tabs you can navigate through at the top of the page.</p>
@@ -54,7 +54,7 @@
             </div>
             <div class="stack">
                 <div class="info">
-                    <h2>Theme</h2>
+                    <h1>Theme</h1>
                     <p><b>[Nightshade]</b></p>
                     <p>(yeah you can't change this yet)</p>
                 </div>
@@ -66,11 +66,13 @@
                     <h2>Favorites</h2>
                 </div>
                 <div class="track">
-                    <p>hi</p>
-                    <audio src="./audio/Curtain Call.mp3" controls></audio>
-                    <!-- <button id="playpause">||</button>
-                    <input id="seek" type="range" max="100" value="0">
-                    <span id="duration">0:00</span> -->
+                    <audio src="./audio/Curtain Call.mp3"></audio>
+                    <button class="move">𝤺</button>
+                    <p class="name">hi</p>
+                    <button class="volume">🕪</button>
+                    <button class="playpause" onclick="toggleAudio(this)">⯈</button>
+                    <input class="seeker" type="range" max="123.5" value="0">
+                    <p class="duration">0:00</p>
                 </div>
                 <div class="track"></div>
             </div>

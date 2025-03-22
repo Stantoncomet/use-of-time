@@ -19,7 +19,7 @@ body {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
     grid-template-rows: repeat(20, 1fr);
-    gap: 8px;
+    gap: 0px;
     
 }
 
@@ -49,6 +49,7 @@ body {
 
 #topbar {
     grid-column: span 19 / span 19;
+    grid-row: span 2 / span 2;
 
     display: flex;
     flex-wrap: nowrap;
@@ -67,11 +68,13 @@ body {
     justify-content: start;
     align-items: baseline;
     align-content: start;
+
+    height: 100%;
 }
 
 #topbar #tabs button {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 #tabs button.selected {
@@ -95,7 +98,9 @@ body {
     background: none;
     border: none;
     color: white;
-    height: 35px;
+    height: 100%;
+
+    font-size: larger;
 }
 
 #folder-input {
@@ -105,9 +110,9 @@ body {
 
 #desk {
     grid-column: span 19 / span 19;
-    grid-row: span 19 / span 19;
+    grid-row: span 18 / span 18;
     grid-column-start: 2;
-    grid-row-start: 2;
+    grid-row-start: 3;
 
     background-color: rgb(5,5,10);
     background-image: radial-gradient(0.1vw, rgb(87, 90, 121), rgb(5,5,10));
@@ -147,6 +152,7 @@ body {
 
 .stack {
     overflow: scroll;
+    
 
     scrollbar-color: #21a33d black;
 
@@ -163,6 +169,9 @@ body {
     width: 12vw;
     height: 4vw;
 
+    font-size: 1.2vw;
+
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -176,7 +185,7 @@ body {
     
 }
 .info p {
-    font-size: small;
+    font-size: medium;
 }
 
 .track {
@@ -189,7 +198,104 @@ body {
 
     width: 12vw;
     height: 4vw;
+
+    padding: 0;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0vw;
 }
+
+.track button {
+    background: none;
+    border: none;
+    color: aliceblue;
+
+    font-size: x-large;
+}
+.track button:hover {
+    scale: 1.5;
+}
+.track button:active {
+    scale: 1.2;
+}
+
+.track .move {
+
+}
+.track .name {
+    grid-column: span 4 / span 4;
+
+    margin: 0;
+    font-size: 1.1vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.1);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    
+}
+.track .volume {
+    grid-column-start: 6;
+}
+.track .playpause {
+    grid-row-start: 2;
+    margin-right: 0.7vw;
+    margin-left: 0.7vw;
+
+    padding: 0;
+
+    width: auto;
+
+}
+.track .seeker {
+    grid-column: span 4 / span 4;
+    grid-row-start: 2;
+
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+
+    color:#21a33d;
+
+    
+}
+.track .seeker::-moz-range-thumb, .track .seeker::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0.4vw;
+    height: 0.9vw;
+    background-color: aliceblue;
+    border: rgb(20,20,25) solid 0.15vw;
+    border-radius: 5px;
+}
+.track .seeker::-moz-range-track {
+    cursor: pointer;
+
+    background: rgb(170, 170, 170); 
+    border: rgb(20,20,25) solid 0.1vw;
+    border-radius: 10px;
+    color: transparent;
+
+    width: 100%;
+    height: 0.4vw;
+}
+.track .duration {
+    grid-column-start: 6;
+    grid-row-start: 2;
+
+    font-size: 0.7vw;
+    display: flex;
+    align-items: center;
+
+    margin-right: 0.7vw;
+    margin-left: 0.7vw;
+}
+
+
+
 
 
 
