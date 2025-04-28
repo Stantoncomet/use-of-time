@@ -188,6 +188,8 @@ body {
     font-size: medium;
 }
 
+/* TRACK */
+
 .track {
     background-color: #21a33d;
     border-radius: 10px;
@@ -196,8 +198,8 @@ body {
 
     margin: 1vw;
 
-    width: 12vw;
-    height: 4vw;
+    width: 250px;
+    height: 100px;
 
     padding: 0;
 
@@ -215,10 +217,10 @@ body {
     font-size: x-large;
 }
 .track button:hover {
-    scale: 1.5;
+    scale: 1.2;
 }
 .track button:active {
-    scale: 1.2;
+    scale: 1.1;
 }
 
 .track .move {
@@ -227,8 +229,9 @@ body {
 .track .name {
     grid-column: span 4 / span 4;
 
+
     margin: 0;
-    font-size: 1.1vw;
+    font-size: 1em;
 
     display: flex;
     align-items: center;
@@ -255,7 +258,7 @@ body {
     grid-column: span 4 / span 4;
     grid-row-start: 2;
 
-    -webkit-appearance: none;
+    /* -webkit-appearance: none; */
     width: 100%;
     background: transparent;
 
@@ -265,10 +268,10 @@ body {
 }
 .track .seeker::-moz-range-thumb, .track .seeker::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 0.4vw;
-    height: 0.9vw;
+    width: 4px;
+    height: 20px;
     background-color: aliceblue;
-    border: rgb(20,20,25) solid 0.15vw;
+    border: rgb(20,20,25) solid 2px;
     border-radius: 5px;
 }
 .track .seeker::-moz-range-track {
@@ -286,7 +289,7 @@ body {
     grid-column-start: 6;
     grid-row-start: 2;
 
-    font-size: 0.7vw;
+    font-size: 0.8em;
     display: flex;
     align-items: center;
 
@@ -294,11 +297,28 @@ body {
     margin-left: 0.7vw;
 }
 
+.track .shipment {
+    position: absolute;
 
+    background-color: pink;
+    border: black solid 2px;
 
+    visibility: hidden;
 
+    display: flex;
+    flex-direction: column;
+}
 
+.track .shipment button {
+    color: black;
+    font-size: 1em;
 
+    /* border-bottom: black solid 1px; */
+}
+
+.track .shipment button:hover {
+    scale: 1.05;
+}
 
 
 /* Misc */

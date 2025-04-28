@@ -15,6 +15,7 @@
             <!-- <p>act1...</p>
             <p>act2...</p> -->
             <p>side text woah look at me go</p>
+            <p>thanks for your patience Bodhi</p>
         </div>
      </div>
 
@@ -25,6 +26,7 @@
             <!-- <button><p>➕</p></button> -->
         </div>
         <div id="menu">
+            <!-- <button id="reload-tracks">⟳</button> -->
             <label>
                 <input id="folder-input" type="file" webkitdirectory>
                 📂
@@ -41,6 +43,9 @@
                     <p>This is a tool developed for the sound techs of the <u>PTHS Theatre Department</u>!</p>
                     <p>Its main purpose is to assist the process of playing audio tracks during shows. It was made in response the absurdity that is playing audio from File Explorer.</p>
                     <audio id="test-track" src=""></audio>
+                    <h2>Additional Info</h2>
+                    <p>Current support browsers:</p>
+                    <p>- Firefox</p>
                 </div>
             </div>
             <div class="stack">
@@ -57,6 +62,11 @@
                     <h1>Theme</h1>
                     <p><b>[Nightshade]</b></p>
                     <p>(yeah you can't change this yet)</p>
+
+                    <h1>Future Features</h1>
+                    <p>-> Volume control</p>
+                    <p>-> Organize tracks</p>
+                    <p>-> Soundboard form</p>
                 </div>
             </div>
         </div>
@@ -67,12 +77,17 @@
                 </div>
                 <div class="track">
                     <audio src="./audio/Curtain Call.mp3"></audio>
-                    <button class="move">𝤺</button>
+                    <button class="move" draggable="true" ondrag="console.log(event.clientX)" onclick="setShipment(this, 'visible')">𝤺</button>
                     <p class="name">hi</p>
                     <button class="volume">🕪</button>
                     <button class="playpause" onclick="toggleAudio(this)">⯈</button>
                     <input class="seeker" type="range" max="123.5" value="0">
                     <p class="duration">0:00</p>
+
+                    <!-- hidden by default -->
+                    <div class="shipment" onmouseleave="setShipment(this, 'hidden')">
+                        <button onclick="shipTrack(this)">homeless</button>
+                    </div>
                 </div>
                 <div class="track"></div>
             </div>
@@ -92,4 +107,6 @@
      </div>
 </body>
 <script src="script.js"></script>
+<style></style>
+
 </html>

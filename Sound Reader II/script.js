@@ -8,6 +8,10 @@ let audio_files = []; // array of full paths to files
 let audio_directory = "";
 const ValidSounds = ['mp3', 'wav', 'ogg'];
 
+let audio_tree = {
+    "homeless": []
+}
+
 
 AudioInput.addEventListener('change', async e => {
     await loadAudio();
@@ -61,9 +65,10 @@ async function loadAudio() {
 
     // Organize and check audio tracks
 
-    let audio_tree = {
-        "homeless": []
-    }
+    // made global
+    // let audio_tree = {
+    //     "homeless": []
+    // }
     let og_tab_names = {}
 
     audio_files.forEach(path => {
@@ -115,9 +120,10 @@ async function loadAudio() {
     console.log(og_tab_names)
     // Create pages n stuff
     for (let tab in audio_tree) {
-        if (tab == "homeless") continue;
-        createPage(tab, og_tab_names[tab]);
-        createStack(tab, "All");
+        if (tab != "homeless") {
+            createPage(tab, og_tab_names[tab]);
+            createStack(tab, "All");
+        };
         audio_tree[tab].forEach(path => {
             createTrack(tab, 0, path);
         })
@@ -185,6 +191,42 @@ function toggleAudio(track_play_btn) {
         track_play_btn.innerText = "⯈";
         audio_ele.pause();
     }
+}
+
+function toggleVolumeControls(track_vol_btn) {
+    
+}
+
+function setShipment(track_ship_btn, visibility) {
+    // Get the parent/whole track div, since track_ship_btn is just the button element
+    /**
+     * @type {HTMLElement}
+     */
+    let track_ele = track_ship_btn.parentElement;
+
+    /**
+     * @type {HTMLElement}
+     */
+    let ship_menu_ele = track_ele.querySelector('.shipment');
+
+    
+    ship_menu_ele.style.visibility = visibility;
+
+}
+
+function shipTrack(ship_btn) {
+    // Get the parent/whole track div, since track_ship_btn is just the button element
+    /**
+     * @type {HTMLElement}
+     */
+    let track_ele = ship_btn.parentElement.parentElement;
+
+    let dest_page_id = ship_btn.innerText;
+
+    ship_btn.parentElement.style.visibility = 'hidden';
+    track_ele.remove();
+    document.getElementById(dest_page_id).querySelectorAll('.stack')[0].appendChild(track_ele);
+    
 }
 
 // Site strucure building
@@ -263,17 +305,21 @@ function createTrack(page_id, stack_index=0, src="") {
     let playpause_b = document.createElement('button');
     let seeker_i = document.createElement('input');
     let duration_p = document.createElement('p');
+    
 
     audio_e.setAttribute('src', src);
     move_b.innerText = "𝤺";
+    move_b.setAttribute('onclick', `setShipment(this, 'visible')`)
     name_p.innerText = file_name;
     volume_b.innerText = "🕪";
+    volume_b.setAttribute('onclick', `toggleVolumeControls(this)`)
     playpause_b.innerText = "⯈";
     playpause_b.setAttribute('onclick', `toggleAudio(this)`);
     seeker_i.setAttribute('type', 'range');
     seeker_i.setAttribute('max', '100');
     seeker_i.setAttribute('value', '0');
     duration_p.innerText = "0:00";
+    
 
     move_b.classList.add('move');
     name_p.classList.add('name');
@@ -281,6 +327,24 @@ function createTrack(page_id, stack_index=0, src="") {
     playpause_b.classList.add('playpause');
     seeker_i.classList.add('seeker');
     duration_p.classList.add('duration');
+
+    // special for shipment menu
+
+    let shipment_d = document.createElement('div');
+    let dests = Object.keys(audio_tree);
+    
+    for (let i = 0; i < dests.length; i++) {
+        let dest_e = document.createElement('button');
+        dest_e.innerText = dests[i];
+        dest_e.setAttribute('onclick', `shipTrack(this)`);
+
+        shipment_d.appendChild(dest_e)
+    }
+
+    shipment_d.setAttribute('onmouseleave', `setShipment(this, 'hidden')`);
+    shipment_d.classList.add('shipment');
+
+
     //i hate this
 
 
@@ -293,6 +357,7 @@ function createTrack(page_id, stack_index=0, src="") {
     track_div.appendChild(playpause_b);
     track_div.appendChild(seeker_i);
     track_div.appendChild(duration_p);
+    track_div.appendChild(shipment_d);
     // Get page, get array of all stacks, select stack with stack_index, append track
     document.getElementById(page_id).querySelectorAll('.stack')[stack_index].appendChild(track_div);
 }
