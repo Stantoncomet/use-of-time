@@ -21,6 +21,7 @@ body {
     grid-template-rows: repeat(20, 1fr);
     gap: 0px;
     
+    overflow: hidden;
 }
 
 
@@ -57,6 +58,8 @@ body {
     justify-content: start;
     align-items: baseline;
     align-content: start;
+
+    overflow-x: scroll;
 }
 
 #topbar #tabs {
@@ -86,7 +89,7 @@ body {
 }
 
 #topbar #menu {
-    width: 5vw;
+    width: 100px;
 
     justify-content: center;
     align-items: center;
@@ -119,9 +122,6 @@ body {
     background-size: 6vw 6vw;
     background-repeat: repeat;
 
-    /* overflow: scroll; */
-
-
 }
 
 .page {
@@ -137,6 +137,8 @@ body {
     visibility: hidden;
     width: 0px;
     height: 0px;
+
+    
 }
 
 .loaded-page {

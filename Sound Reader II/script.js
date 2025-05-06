@@ -1,3 +1,5 @@
+let xxx = false;
+
 const Desk = document.getElementById('desk');
 const Tabs = document.getElementById('tabs');
 const Toast = document.getElementById('toast');
@@ -19,15 +21,24 @@ let persistant_data = {
         //     page_id: "",
         //     stack_index: 0
         // }
-    }
+    },
+    do_auto_load: true
 }
 
 
 AudioInput.addEventListener('change', async e => {
+    // persistant_data.do_auto_load = true;
+    //savePersistance();
+
+    fetchPersistance();
     await loadAudio();
 });
 document.addEventListener('DOMContentLoaded', async e => {
     fetchPersistance();
+    // if (!persistant_data.do_auto_load) {/home/olive/Oliver/GitHub/use-of-time/Sound Reader II/sound_reader_ii.html
+    //     waveToast("Loading Impedance", "Persitant data was reset (☠️), please choose a new <u>audio folder</u>!", 'meh');
+    //     return;
+    // }
     await loadAudio();
 })
 
@@ -36,9 +47,10 @@ document.addEventListener('DOMContentLoaded', async e => {
 
 async function loadAudio() {
     console.log("SOUND LOADING IN PROGRESS");
+    
     let file_list = AudioInput.files;
     if (!file_list.length) {
-        console.log("Can't remember last folder");
+        console.warn("Can't remember last folder");
         waveToast("Amnesia Warning", "I couldn't remember the last <u>audio folder</u> you opened, please choose one!", 'meh');
         return;
     }
@@ -53,25 +65,29 @@ async function loadAudio() {
             current_tabs[i].remove();
         }
     }
+    audio_tree = {
+        "homeless": []
+    }
+
+    
 
     for (let i = 0; i < file_list.length; i++) {
         audio_files.push(file_list[i].webkitRelativePath);
     }
+    
+    
 
 
-    // try {
-    //     await (TestTrack.src = audio_files[0]);
-    //     await TestTrack.play();
-    // } catch (error) {
-    //     console.log(error)
-    //     waveToast("Bad Audio", "I can't load the audio in the folder you selected", 'error');
-    //     return;
+    // Check if new audio folder was loaded and reset persitant data
+    // if (persistant_data.working_audio_dir != audio_directory) {
+    //     console.warn()
     // }
+    // console.warn(audio_directory);
     
 
 
     // Splits the full path string into array of folders/files and takes the first one, which is the top-most directory
-    audio_directory = audio_files[0].split('/')[0];
+    audio_directory = audio_files[0].split('/')[0];   
     let valid_sound_count = 0;
 
     // Organize and check audio tracks
@@ -136,6 +152,7 @@ async function loadAudio() {
             createStack(tab, "All");
             createStack(tab, "DVDs");
             createStack(tab, "Cassettes");
+            createStack(tab, "On-Demand Movies");
             // createStack(tab, "");
             // createStack(tab, "");
         };
@@ -255,7 +272,6 @@ function scoochTrack(track_vol_btn, amount) {
 
     if (new_stack_index < 0 || new_stack_index > all_stacks.length-1)
         new_stack_index -= amount;
-         
     // move
     moveTrack(track_ele, page_ele.id, new_stack_index);
 
@@ -279,9 +295,12 @@ function shipTrack(ship_btn) {
     let dest_page_id = ship_btn.innerText;
 
     ship_btn.parentElement.style.visibility = 'hidden';
+
+    waveToast("Shipment Log", `<u>${track_ele.querySelector('p.name').innerText}</u> was shipped to <u>${dest_page_id}</u>`, 'success');
     moveTrack(track_ele, dest_page_id);
     
 
+    
     // Update local storage for persistance
     
     let shipment = {
@@ -292,7 +311,6 @@ function shipTrack(ship_btn) {
     persistant_data.shipped_tracks[track_ele.id] = shipment;
     //console.log(persistant_data)
     savePersistance();
-    
 }
 
 function savePersistance() {
@@ -305,8 +323,20 @@ function fetchPersistance() {
 
 function deletePersistance() {
     persistant_data.shipped_tracks = {};
+    //persistant_data.do_auto_load = false;
     savePersistance();
     waveToast("FYI", "All persistant data was deleted.", 'meh')
+}
+
+// Things break sometimes, not a universal fix, but it'll try some things.
+function tryFix() {
+    persistant_data = {
+        shipped_tracks: {},
+        do_auto_load: true
+    }
+    savePersistance();
+
+    waveToast("Fixes Applied", "These might help, reload the page to see!", "meh");
 }
 
 // Site strucure building

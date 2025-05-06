@@ -14,8 +14,8 @@
         <div id="tree">
             <!-- <p>act1...</p>
             <p>act2...</p> -->
-            <p>side text woah look at me go</p>
-            <p>thanks for your patience Bodhi</p>
+            <p>version: b3</p>
+            <p>thanks Bodhi</p>
         </div>
      </div>
 
@@ -32,6 +32,7 @@
                 📂
             </label>
             <button onclick="deletePersistance()">☠️</button>
+            <button onclick="tryFix()">🛠️</button>
         </div>
      </div>
      
@@ -56,30 +57,31 @@
                     <p>Then, click the 📂 in the top right corner choose that audio folder.</p>
                     <p>Subdirectories containing audio files are divided amongst tabs you can navigate through at the top of the page.</p>
                     <p>Any audio not in a subdirectory will be in the <b>Homeless</b> tab.</p>
+                    <p>Move tracks between tabs and stacks. Order of tracks in stacks is not saved, but everything else should be.</p>
                 </div>
             </div>
             <div class="stack">
                 <div class="info">
-                    <h1>Theme</h1>
-                    <p><b>[Nightshade]</b></p>
-                    <p>(yeah you can't change this yet)</p>
+                    <h1>Changelog</h1>
 
-                    <h1>Future Features</h1>
-                    <p>-> Volume control</p>
-                    <p>-> Organize tracks</p>
-                    <p>-> Soundboard form</p>
+                    <h2>Beta 3</h2>
+                    <li>(1) Removed weird empty overflow from pages.</li>
+                    <li>(2) Tab bar now scrolls horizontally on overflow.</li>
+                    <li>(3) Moving tracks between pages now gives a toast.</li>
+                    <li>(4) TryFix button might help if nothing is loading.</li>
+                    <li>(5) New On-Demand Movies stack on pages.</li>
+                    <li>(6) Trying to ship the example track no longer breaks everything.</li>
+                    <!-- <li>(4) Clearing persistant data now also </li> -->
                 </div>
             </div>
         </div>
         <div id="homeless" class="page">
             <div class="stack">
-                <div class="label">
-                    <h2>Favorites</h2>
-                </div>
+                <p>Favorites</p>
                 <div class="track">
                     <audio src="./audio/Curtain Call.mp3"></audio>
                     <button class="move" draggable="true" ondrag="console.log(event.clientX)" onclick="setShipment(this, 'visible')">𝤺</button>
-                    <p class="name">hi</p>
+                    <p class="name">This is what a track looks like</p>
                     <div class="volume">
                         <button onclick="scoochTrack(this, 1)">></button>
                         <button onclick="scoochTrack(this, -1)"><</button>
@@ -90,10 +92,10 @@
 
                     <!-- hidden by default -->
                     <div class="shipment" onmouseleave="setShipment(this, 'hidden')">
-                        <button onclick="shipTrack(this)">homeless</button>
+                        <!-- <button onclick="shipTrack(this)">homeless</button> -->
+                        <button>homeless</button>
                     </div>
                 </div>
-                <div class="track"></div>
             </div>
             <!-- <div class="stack">
                 <div class="new-stack">
