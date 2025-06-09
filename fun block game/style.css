@@ -12,7 +12,10 @@ body {
 }
 
 #screen {
-    background-color: gray;
-    width: 40vw;
-    height: 60vw;
+    width: 100%;
+    
+}
+
+button {
+    position: fixed;
 }

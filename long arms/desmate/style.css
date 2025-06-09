@@ -1,0 +1,40 @@
+* {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background-color: rgb(15, 19, 22);
+    color: white;
+}
+
+.option {
+    margin: 0;
+    display: flex;
+}
+/* .option * {
+    margin: 0;
+} */
+
+#msg {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: aliceblue;
+    color: rgb(15, 19, 22);
+    margin: 0;
+    padding: 5px;
+}
+
+/* Connection Status */
+.nope {
+    color: red;
+}
+.trying {
+    color: yellow;
+}
+.yep {
+    color: green;
+}

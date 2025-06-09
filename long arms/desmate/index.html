@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Desmate</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <h1>Desmate</h1>
+        <p>Connection Status: 📶<b id="status" class="nope">Nope</b></p>
+        <div>
+            <input id="addr" placeholder="ws://127.0.0.1:7000">
+            <button id="serverConnect">Connect to Server</button>
+            <button id="serverDisconnect">X</button>
+            <button id="execute">Execute</button>
+            <div class="option"><p>Execute on Recieve</p><input id="auto_exe" type="checkbox"></div>
+        </div>
+        <p id="msg">console.log("[msg not found]")</p>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>

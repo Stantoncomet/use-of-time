@@ -1,0 +1,14 @@
+{
+    "name": "Desmate",
+    "version": "1.0.0",
+    "description": "Desmos scripting with the power of WebSockets!",
+    "manifest_version": 3,
+    "author": "Stantoncomet",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "Desmate"
+    },
+    "background": {
+        "service_worker": "script.js"
+    }
+}

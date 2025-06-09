@@ -5,11 +5,16 @@
         <meta name="viewport" content="width=device-width, intial-scale=1">
         <link rel="icon" type="image/x-icon" href="icon.png">
         <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
+        
         <title>Fun Block Game Free Puzzles for Kids Brain IQ Challenge</title>
     </head>
 
     <body>
-        <canvas id="screen" width="400" height="600"></canvas>
+        <!-- <button onmousedown="randomPointsStart()" onmouseup="randomPointsStop()" onmouseleave="randomPointsStop()">circle</button> -->
+        <canvas id="screen" width="4000" height="4000"
+        onmousedown="randomPointsStart()" onmouseup="randomPointsStop()" onmouseleave="randomPointsStop()"
+        ></canvas>
+        
     </body>
+    <script src="script.js"></script>
 </html>
