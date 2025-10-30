@@ -2,7 +2,7 @@
 This is the orginal, minimalistic sound reader program. It's apparently slightly less confusing to use than the second version, but even so, here are some things to keep in mind.
 
 ## Setup
-1. Download `Sounder_Reader_v1.0.0.html` from the releases page.
+1. Download `Sounder_Reader_v1.0.0.html` from the [releases](https://github.com/Stantoncomet/use-of-time/releases/tag/v1.0.0) page.
 2. Place the html file in a folder.
 3. Create an `audio` folder in the same place as the html file, so they sit next to each other.
 4. In the `audio` folder, create organizational subfolders, like `fx` or `music` or `act1 `. These can be any name, though some special names like `sound` or `song` will create tracks with special background colors.
