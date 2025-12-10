@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wm</title>
+    <script src="./html_builder.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <h1>What Mods?</h1>
+    <form action="javascript:void(0);">
+        <input id="ml-input" placeholder="html modlist export">
+        <button type="submit" onclick="load()">Load</button>
+    </form>
+    <h1>These Mods:</h1>
+
+    <div id="filterer">
+        <span>Fliter by</span>
+        <button onclick="filterList('all')">All mods</button>
+        <button onclick="filterList('client')">Client mods</button>
+        <button onclick="filterList('server')">Server mods</button>
+        <span>No libraries</span><input type="checkbox" id="lib-tog" onchange="filterList(cur_filter)">
+        <p id="mod-count">Shown: 0</p>
+    </div>
+
+    <div id="modlist">
+    </div>
+
+</body>
+
+<style>
+    body {
+        background-color: aliceblue;
+        background-image: radial-gradient(1.5px, rgb(22, 30, 123), aliceblue);
+        background-size: 50px 50px;
+        background-repeat: repeat;
+
+        font-family: Arial, Helvetica, sans-serif;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #filterer {
+        position: sticky;
+    }
+
+    #modlist {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .track {
+        background-color: rgb(211, 213, 239);
+        border: solid 4px black;
+        border-radius: 9px;
+
+        max-width: 500px;
+        padding: 12px;
+        margin: 5px;
+    }
+
+    .title {
+        display: flex;
+    }
+
+    .title h1 {
+        padding-left: 10px;
+        margin: 0;
+    }
+
+    .track p {
+        margin-bottom: 0;
+    }
+
+    .icon {
+        width: 100px;
+    }
+</style>
+</html>
