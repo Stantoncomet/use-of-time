@@ -1,5 +1,7 @@
 let all_mods = [];
 async function load() {
+    document.getElementById('loading').innerText = "Fetching content...";
+
     let html_list = valOfId('ml-input')
     // parse the html file from prism modlist export
     let mod_list = html_list
@@ -12,9 +14,15 @@ async function load() {
         .split(' 	')
 
 
-    all_mods = await getModInfo(mod_list)
+    let fetch_success = true;
+    all_mods = await getModInfo(mod_list).catch(e => {
+        console.log(e);
+        document.getElementById('loading').innerText = "Network error :p";
+        fetch_success = false;
+    })
     //console.log(mods)
-    displayShit()
+    if (fetch_success)
+        displayShit();
 }
 
 
@@ -45,6 +53,8 @@ async function getModInfo(mod_list) {
 
 
 function displayShit() {
+    hideEle('loading');
+
     all_mods.forEach(mod => {
         console.info(`Loading Mod ${mod.title}`)
 
