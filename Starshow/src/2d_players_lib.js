@@ -31,6 +31,19 @@ var MOUSEPOS = {
 }
 
 
+/**
+ * Config stuff
+ */
+
+/**
+ * Appends the gamefield to a custom html container
+ * @param {string} container_id 
+ */
+function setGameFieldContainer(container_id) {
+    document.getElementById(container_id).appendChild(canvas_ele);
+}
+
+
 
 /**
  * Loops :)
@@ -73,6 +86,10 @@ document.addEventListener('keyup', e => {
     DOWN_KEYS = DOWN_KEYS.filter(k => k != e.key);
 })
 
+/**
+ * Returns list of pressed keys
+ * @returns 
+ */
 function getDownKeys() {
     return DOWN_KEYS;
 }
@@ -126,6 +143,10 @@ function drawRect(x, y, w, h, color="red", fill=true) {
  */
 function drawABSRect(x1, y1, x2, y2, color) {
     drawRect(x1, y1, x2-x1, y2-y1, color);
+}
+
+function drawLine(x1, y1, x2, y2, color="red", weight=1) {
+    ctx.stroke
 }
 
 /**

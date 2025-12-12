@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../src/2d_players_lib.js" defer></script>
+</head>
+<body>
+    
+</body>
+<script>
+
+
+let points = [[200, 400]];
+let temp_points = [];
+
+function setup() {
+  drawBackground("black");
+  
+  for (let i = 0; i < points.length; i++) {
+    bush(points[i][0], points[i][1]);
+  }
+
+}
+
+function bush(x,y) {
+  xo = randNum(-2, 2);
+  yo = randNum(-0.5, 3);
+  
+  draw(x, y, x+xo, y+yo);
+  temp_points.push([x+xo, y+yo]);
+}
+
+function randNum(min, max) {
+  return (Math.random()*(max-min))+min;
+}
+
+setup();
+
+
+</script>
+</html>
