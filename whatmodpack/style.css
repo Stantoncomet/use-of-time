@@ -11,39 +11,45 @@ body {
         align-items: center;
     }
 
-    #filterer {
-        position: sticky;
-    }
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder
+}
 
-    #modlist {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+#filterer {
+    position: sticky;
+}
 
-    .track {
-        background-color: rgb(221, 238, 253);
-        border: solid 4px black;
-        border-radius: 9px;
+#modlist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
-        max-width: 500px;
-        padding: 12px;
-        margin: 5px;
-    }
+.track {
+    background-color: rgb(221, 238, 253);
+    border: solid 4px black;
+    border-radius: 9px;
 
-    .title {
-        display: flex;
-    }
+    max-width: 500px;
+    padding: 12px;
+    margin: 5px;
+}
 
-    .title h1 {
-        padding-left: 10px;
-        margin: 0;
-    }
+.title {
+    display: flex;
+}
 
-    .track p {
-        margin-bottom: 0;
-    }
+.title h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 10px;
+    margin: 0;
+}
 
-    .icon {
-        width: 100px;
-    }
+.track p {
+    margin-bottom: 0;
+}
+
+.icon {
+    width: 100px;
+}

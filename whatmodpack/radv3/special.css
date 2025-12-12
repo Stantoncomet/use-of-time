@@ -1,0 +1,40 @@
+.name {
+    margin-bottom: 0;
+}
+
+.sub {
+    margin-top: 0;
+    font-weight: bolder;
+    font-style: italic;
+
+    text-shadow: 0 0 10px rgb(0, 127, 254);
+}
+
+.sub2 {
+    margin-top: 0;
+
+    font-style: italic;
+}
+
+.desc {
+    max-width: 800px;
+    text-align: center;
+
+    background-color: rgb(255, 240, 249) !important;
+}
+
+.download {
+    background-color: rgb(221, 253, 227);
+    border: solid 2px black;
+    border-radius: 9px;
+
+    padding: 7px;
+    margin: 10px; 
+
+    font-weight: bolder;
+    font-style: italic;
+
+    text-decoration: none;
+    color: black;
+}
+
