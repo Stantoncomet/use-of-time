@@ -21,7 +21,31 @@
     text-align: center;
 
     background-color: rgb(255, 240, 249) !important;
+    border: solid 4px black;
+    border-radius: 9px;
+    margin: 5px;
+    padding: 12px;
+
+    display: flex;
+
+    align-items: center;
 }
+
+.desc b {
+    margin: 7px;
+}
+
+#desc2 {
+    padding: 2px;
+}
+
+.desc div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
 
 .download {
     background-color: rgb(221, 253, 227);
@@ -29,7 +53,9 @@
     border-radius: 9px;
 
     padding: 7px;
-    margin: 10px; 
+    margin: 2px; 
+    margin-left: 12px;
+    margin-right: 12px;
 
     font-weight: bolder;
     font-style: italic;
@@ -37,4 +63,3 @@
     text-decoration: none;
     color: black;
 }
-
