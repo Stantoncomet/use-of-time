@@ -31,12 +31,24 @@
     align-items: center;
 }
 
-.desc b {
+.desc p {
     margin: 7px;
 }
 
-#desc2 {
+.desc2 {
     padding: 2px;
+    justify-content: center;
+}
+
+#info-desc-box {
+    display: flex;
+}
+
+/* rearrange things if mobile */
+@media only screen and (max-width: 600px) {
+    #info-desc-box {
+        flex-direction: column;
+    }
 }
 
 .desc div {
