@@ -19,11 +19,17 @@ let persistant_data = {
         // template
         // "": {
         //     page_id: "",
-        //     stack_index: 0
+        //     stack_index: 0,
+        //     stack_level: 0
         // }
     },
     do_auto_load: true
 }
+
+// makes toasts disapear on click, ei if its in the way
+Toast.addEventListener('click', e => {
+    Toast.style.animationName = '';
+})
 
 
 AudioInput.addEventListener('change', async e => {
@@ -255,11 +261,13 @@ function setShipment(track_ship_btn, visibility) {
 }
 
 function moveTrack(track_ele, page_id, stack_index=0) {
+    // make sure track actually exists
+    if (!track_ele) return;
     track_ele.remove();
     document.getElementById(page_id).querySelectorAll('.stack')[stack_index].appendChild(track_ele);
 }
 
-function scoochTrack(track_vol_btn, amount) {
+function scoochTrack(track_vol_btn, h_amount, v_amount=0) {
     let track_ele = track_vol_btn.parentElement.parentElement;
     let stack_ele = track_ele.parentElement;
     /**
@@ -267,11 +275,12 @@ function scoochTrack(track_vol_btn, amount) {
      */
     let page_ele = stack_ele.parentElement;
 
+    // horizontal
     let all_stacks = Array.from(page_ele.querySelectorAll('.stack'));
-    let new_stack_index = all_stacks.indexOf(stack_ele) + amount;
+    let new_stack_index = all_stacks.indexOf(stack_ele) + h_amount;
 
     if (new_stack_index < 0 || new_stack_index > all_stacks.length-1)
-        new_stack_index -= amount;
+        new_stack_index -= h_amount;
     // move
     moveTrack(track_ele, page_ele.id, new_stack_index);
 
@@ -311,6 +320,10 @@ function shipTrack(ship_btn) {
     persistant_data.shipped_tracks[track_ele.id] = shipment;
     //console.log(persistant_data)
     savePersistance();
+}
+
+function sortStack(page_id, stack_index) {
+    console.log([1,2,4,5,"o","a"].sort());
 }
 
 function savePersistance() {
@@ -430,8 +443,9 @@ function createTrack(page_id, stack_index=0, src="") {
     playpause_b.innerText = "⯈";
     playpause_b.setAttribute('onclick', `toggleAudio(this)`);
     seeker_i.setAttribute('type', 'range');
-    seeker_i.setAttribute('max', '100');
-    seeker_i.setAttribute('value', '0');
+    seeker_i.setAttribute('max', '100.0');
+    seeker_i.setAttribute('value', '0.0');
+    seeker_i.setAttribute('step', '0.1');
     duration_p.innerText = "0:00";
     
 

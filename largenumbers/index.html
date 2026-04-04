@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./app.js" defer></script>
+    <title>Estimating things idk</title>
+</head>
+<body>
+    <h1>estimator?</h1>
+    <p>generates an estimate of a positive decimal number with random points</p>
+    <p>more accurate with more points</p>
+    <p>more accurate when the target is close to 1</p>
+    
+    <form action="javascript:void(0);">
+        
+        <label for="target">Target:</label>
+        <input name="target" id="target" type="number" step="any" size="2">
+
+        <label for="point_count"># of points:</label>
+        <input name="point_count" id="point_count" type="number" size="4">
+
+        <button type="submit" onclick="generateEstimation()">Estimate!</button>
+        
+    </form>
+
+    <canvas id="plot" width="1000" height="200"></canvas>
+
+    <p>estimate: <span id="estimate"></span></p>
+</body>
+</html>

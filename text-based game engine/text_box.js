@@ -1,33 +1,33 @@
 // Command stuff
 let cmd_prefix = '<span class="green">Enter action: </span><span class="user-input">';
 let cmd_suffix = '<span id="text-cursor">|</span></span>';
-let command = "";
+let CMD = new UserInput(cmd_prefix, cmd_suffix);
 
 document.addEventListener('DOMContentLoaded', e => {
     START_MSG.forEach(line => printToBox(line));
-    document.getElementById('cmd-line').innerHTML = disCmd(); // Command contents will be empty herew
+    document.getElementById('cmd-line').innerHTML = CMD.getDisplay(); // Command contents will be empty herew
 })
 
 // Typing and deleting text in terminal
 document.addEventListener('keydown', e => {
     // If key is a letter or number, not weird
     if (e.key.length == 1) {
-        command += e.key;
+        CMD.value += e.key;
     } else {
         switch (e.key) {
             case 'Backspace': {
-                command = command.slice(0, command.length-1);
+                CMD.backspace();
                 break;
             }
             case 'Enter': {
-                preProcessCmd();
+                preProcessCMD();
                 break;
             }
         }
     }
     //colorKeyWords();
 
-    document.getElementById('cmd-line').innerHTML = disCmd();
+    document.getElementById('cmd-line').innerHTML = CMD.getDisplay();
 })
 
 function printToBox(msg) {
@@ -42,12 +42,7 @@ function printToBox(msg) {
     clearOld();
 }
 
-/**
- * Returns the command string to display, pre + cmd + suf
- */ 
-function disCmd(cmd = command) {
-    return cmd_prefix + cmd + cmd_suffix;
-}
+
 
 function clearOld() {
     let past_lines = document.getElementsByClassName('line');
@@ -56,8 +51,8 @@ function clearOld() {
     }
 }
 
-function colorKeyWords(cmd = command) {
-    cmd = cmd.trim().toLocaleLowerCase();
+function colorKeyWords() {
+    let cmd = CMD.value.trim().toLocaleLowerCase();
     if (cmd == "shop") {
         cmd_prefix += '<span class="valid-cmd">';
         cmd_suffix = '</span>' + cmd_suffix;
@@ -67,3 +62,5 @@ function colorKeyWords(cmd = command) {
     }
 }
 
+// Re-defined in other file (tools.js)
+function preProcessCMD() {};

@@ -2,10 +2,10 @@
 
 html=""
 js=""
-css=""
+css=
 
 while read -r line; do
-    css=$css+"\n"+$line
+    css=$css$line
 done < "style.css"
 
-echo "$css"
+echo "$css}" > "test.css"

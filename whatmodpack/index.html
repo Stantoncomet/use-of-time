@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=0.8">
     <title>wm</title>
     <script src="./html_builder.js"></script>
     <script src="app.js"></script>
@@ -22,7 +22,11 @@
         <button onclick="filterList('client')">Client mods</button>
         <button onclick="filterList('server')">Server mods</button>
         <span>No libraries</span><input type="checkbox" id="lib-tog" onchange="filterList(cur_filter)">
-        <p id="mod-count">Shown: 0</p>
+        <p><span id="mod-count">Shown: 0 </span><span id="net-info"></span></p>
+    </div>
+
+    <div id="featured">
+        
     </div>
 
     <div id="modlist">
