@@ -27,7 +27,7 @@ async function load() {
 
 
 async function getModInfo(mod_list) {
-
+    
     // use for loop instead of foreach because the latter doesnt like await stuff :((
     // actually no use map instead?
     let mods = mod_list.map(async mod => {
