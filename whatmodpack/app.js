@@ -1,12 +1,36 @@
-// array of a bunch of objects returned from calling the modrinth api
-let all_mods = [];
+const universal_mods = [
+    'glYcmYBi',
+    'x3HZvrj6',
+    'JrvR9OHr',
+    'jSQXzmcf',
+    '9eGKb6K1',
+    'VKXzIykF',
+    'TyCTlI4b',
+    'hMlaZH8f',
+    'yWBAOWPN',
+    'qpPoAL6m',
+    '6xwxDTgf',
+    '82uI0waE',
+    'Cnejf5xM'
+]
 
-//
+const player_mods = [
+    'LNytGWDc',
+    'https://minecraft.curseforge.com/projects/effortless-building',
+    'CvZHwpSu',
+    'https://www.curseforge.com/projects/386134',
+    'https://www.curseforge.com/projects/897116',
+    '73mSSnCf',
+    'OypNE65K'
+]
+
+
+let all_mods = [];
 async function load() {
     document.getElementById('loading').innerText = "Fetching content...";
 
     let html_list = valOfId('ml-input')
-    // parse the html file from prism modlist export to get a list of the project ids
+    // parse the html file from prism modlist export
     let mod_list = html_list
         .replaceAll('<html><body><ul>','')
         .replaceAll('</ul></body></html>','')
@@ -14,42 +38,21 @@ async function load() {
         .replaceAll('</a></li>','')
         .replaceAll('">',';')
         .trim()
-    
-    // get rid of wierd html artifacts and character entities or whatever
-    let parser = new DOMParser();
-    mod_list = parser.parseFromString(mod_list, 'text/html').documentElement.innerText;
+        .split(' 	')
 
-    // split into array
-    mod_list = mod_list.split(' 	');
 
-    
-    // clear old mods
-    all_mods = [];
-
-    let failed_count = 0;
-    // fetch a bunch of promises that have been fulfilled or rejected
-    let all_mod_proms = await getModInfo(mod_list)
-    // only take fulfilled ones and get data
-    all_mod_proms.forEach(p => {
-        if (p.status == 'fulfilled') {
-            all_mods.push(p.value);
-            if (p.value.api_failed) {
-                console.warn(`Problem loading mod ${p.value.title}. Error: ${p.value.error}`);
-            }
-        } else {
-            console.warn(`Failed to load a mod. ${p.reason}`);
-            failed_count++;
-        }
+    let fetch_success = true;
+    all_mods = await getModInfo(mod_list).catch(e => {
+        console.log(e);
+        document.getElementById('loading').innerText = "Network error :p";
+        fetch_success = false;
     })
-
-    if (failed_count > 0)
-        document.getElementById('net-info').innerText = ` (Failed: ${failed_count})`;
-
-    displayShit();
+    //console.log(mods)
+    if (fetch_success)
+        displayShit();
 }
 
-// fetch mods using modrinth api
-// creates an array of promises so it's fast and runs parallel or smth
+
 async function getModInfo(mod_list) {
     
     // use for loop instead of foreach because the latter doesnt like await stuff :((
@@ -59,34 +62,29 @@ async function getModInfo(mod_list) {
         //document.getElementById('loading').innerText = `Loading ${mod.split(';')[1]} (${i}/${mod_list.length})`;
         //split the mod array item to get the url, then spit that by / to get the id
         let mod_url = mod.split(';')[0];
-        let mod_title = mod.split(';')[1];
-        if (!mod_title) mod_title = "missingo";
         //check for not modrinth mods
         if (mod_url.split('/')[2] != 'modrinth.com') {
-            return {title:mod_title, source_url:mod_url, api_failed:true, error:"Not Modrinth mod"};
+            return {title:mod.split(';')[1], source_url:mod_url, is_not_modrinth_mod:true};
         }
         
         let mod_id = mod_url.split('/')[4];
         let res = await fetch(`https://api.modrinth.com/v2/project/${mod_id}`);
-        return res.json().catch(() => {return {title:mod_title, source_url:mod_url, api_failed:true, error:"Modrinth project not found"}});
-
+        return res.json();
+        
+        //mods.push("e")
     })
 
-    return Promise.allSettled(mod_proms)
+    //document.getElementById('loading').innerText = `Done Loading ${mods.length}/${mod_list.length}`;
+    return Promise.all(mods)
 }
 
-// give each mod a "track" that's displayed on page
-// tracks have an icon, title, and description
+
 function displayShit() {
     hideEle('loading');
-
-    // remove any old tracks
-    document.getElementById('modlist').querySelectorAll('.track').forEach(t => t.remove())
 
     all_mods.forEach(mod => {
         console.info(`Loading Mod ${mod.title}`)
 
-        // parent elements
         let Track = new DocEle('div');
         Track.addClass('track');
         let Title = new DocEle('div');
@@ -94,16 +92,21 @@ function displayShit() {
 
         // just end it here if no more info can be gathered
         if (mod.is_not_modrinth_mod) {
+            // set id as url
+            Track.setId(`mod-${mod.source_url}`);
+            
             Title.newChild('h1', mod.title);
+
             Track.appendChild(Title.ele);
-            Track.newChild('p', `<a href="${mod.source_url}">${mod.source_url}</a>`)
+
+            Track.newChild('p', `<a href="${mod.source_url}">${mod.source_url}</a>`);
+
             Track.appendToId('modlist');
             return;
         }
 
         Track.setId(`mod-${mod.id}`);
 
-        // icon is also the hyperlink to mod page
         let Img = new DocEle('a');
         Img.ele.href = `https://modrinth.com/mod/${mod.id}`;
         Img.ele.setAttribute('target', "_blank")
@@ -112,16 +115,17 @@ function displayShit() {
             c.ele.src = mod.icon_url;
             return c;
         });
-
-        // append icon and title to Title div
         Title.appendChild(Img.ele)
+
         Title.newChild('h1', mod.title);
-        
-        // append everything to the main Track div
+
         Track.appendChild(Title.ele);
-        Track.newChild('p', mod.description);
+
+        if (universal_mods.includes(mod.id))
+            Track.newChild('p', "<span class=\"indicator\" title=\"Universal Mod\">🌐</span> "+mod.description);
+        else
+            Track.newChild('p', mod.description);
         
-        // add Track to page
         Track.appendToId('modlist');
     })
 
@@ -133,8 +137,6 @@ function displayShit() {
 
 let cur_filter = 'all';
 
-
-// filter buttons to sort tracks
 function filterList(filter) {
     cur_filter = filter;
     let tracks = document.querySelectorAll('.track')
@@ -143,10 +145,6 @@ function filterList(filter) {
     console.log(show_libs)
 
     let display_mod_count = 0;
-
-    // just clear network errors and stuff after first display
-    if (filter != 'all')
-        document.getElementById('net-info').innerText = "";
 
     switch (filter) {
         case 'all': {
@@ -187,6 +185,20 @@ function filterList(filter) {
             break;
         }
 
+        case 'user-added': {
+            hideAll();
+            all_mods.forEach(mod => {
+                if (player_mods.includes(mod.id)) {
+                    showEle(`mod-${mod.id}`);
+                    display_mod_count++;
+                } else if (player_mods.includes(mod.source_url)) {
+                    showEle(`mod-${mod.source_url}`);
+                    display_mod_count++;
+                }
+            })
+            break;
+        }
+
         default: {
 
         }
@@ -195,9 +207,6 @@ function filterList(filter) {
     document.getElementById('mod-count').innerText = `Shown: ${display_mod_count}`;
 }
 
-
-
-// more helpers 
 function hideAll() {
     let tracks = document.querySelectorAll('.track');
     tracks.forEach(t => {

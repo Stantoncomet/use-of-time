@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rad iv</title>
+    <script src="../html_builder.js"></script>
+    <script src="../app.js"></script>
+    <script src="why.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="special.css">
+</head>
+
+<body>
+    <a href="../" style="position: absolute; left: 0; color:grey;">Back</a>
+    <img src="https://earth.motfe.net/wp-content/uploads/2019/01/chunky_small.png" id="background-img">
+
+    <h1 class="name">RAD EARTH</h1>
+    <p class="sub">Spring 2026</p>
+    <p class="desc">hi again! welcome to the 4th installment of RAD! this time it takes place on a map of the world, with accurate geography features, and everyone joining gets to add a mod!</p>
+    
+    <div id="info-desc-box">
+        <div class="desc desc2">
+            <p><b>Downloads -></b></p>
+            <div>
+            <a href="https://www.dropbox.com/scl/fi/1qxwm748uh8u6magcv4wk/RAD-EARTH-PRISM-PACK.zip?rlkey=991um77n4id9lpip1fcr6k31p&st=l3zun7vg&dl=1" class="download">Prism Launcher (zip)</a>
+            <a href="https://www.dropbox.com/scl/fi/unoddlzeq6z3p0pejm44p/RAD-EARTH-CURSEFORGE-PACK.zip?rlkey=hk61w5sxdkne5o4rchx2931fk&st=88aejjky&dl=1" class="download">CurseForge (zip)</a>
+            <a href="https://www.dropbox.com/scl/fi/xzuxlx3yqa9b86hq0vtsm/RAD-EARTH-MODRINTH-PACK.zip?rlkey=owctbp2qygjnj2tuik1dgjcu7&st=s8r36lmt&dl=1" class="download">Modrinth (mrpack)</a>
+            </div>
+        </div>
+        <div class="desc desc2">
+            <p><b>The Gleeze </b><u><span id="server-status" title="no players here">...</span></u></p>
+
+        </div>
+    </div>
+
+    <input id="ml-input" style="display: none; visibility: hidden;">
+    <h1>These Mods:</h1>
+
+    <div id="filterer">
+        <span>Fliter by</span>
+        <button onclick="filterList('all')">All mods</button>
+        <button onclick="filterList('client')">Client mods</button>
+        <button onclick="filterList('server')">Server mods</button>
+        <button onclick="filterList('user-added')">Players' mods</button>
+        <span>No libraries</span><input type="checkbox" id="lib-tog" onchange="filterList(cur_filter)">
+        <p><span id="mod-count">Shown: 0 </span><span id="net-info"></span></p>
+    </div>
+
+    <div id="modlist">
+        <p id="loading"></p>
+    </div>
+
+    
+    <a href="https://earth.motfe.net/" target="_blank" style=" right: 0; bottom:0; color:grey;">Image from earth.motfe.net!</a> 
+</body>
+
+</html>
