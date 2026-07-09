@@ -1,0 +1,25 @@
+/* little indicators */
+.indicator {
+    /* hidden by defualt */
+    visibility: hidden;
+    display: block;
+
+    color: red;
+    font-size: 9pt;
+    text-align: center;
+    line-height: 9pt;
+    font-weight: bold;
+
+    width: 13px;
+    height: 13px;
+
+    background-color: black;
+    opacity: 0.9;
+
+    z-index: 10;
+    position: absolute;
+    top: -4pt;
+    left: 0;
+
+
+}

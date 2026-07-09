@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./html_builder.js"></script>
+    <script src="./app.js"></script>
+    <link rel="stylesheet" href="./app_style.css"></link>
+    <title>Example Page</title>
+</head>
+
+<body>
+
+    <!-- <div id="infobar">
+        <p>Current keystrokes: <span>N/A</span> (confirm with </p>
+    </div> -->
+
+
+    <div id="banner">
+        <img src="" alt="logo">
+        <h1>Example Page</h1>
+        <div id="nav">
+            <a href="">home</a>
+            <a href="./game.html">game</a>
+            <a href="./word.html">word</a>
+            <a href="https://curl.se" target="_blank">curl</a>
+        </div>
+    </div>
+    <div class="content">
+        <p>Navigate around this page with your keyboard!</p>
+        <p><b>Double-tap K</b> to get started</p>
+        <p>Time since last k press: <span id="time-since">0</span>ms</p>
+        <p>Board Nav enabled? <span id="enable">No</span></p>
+        <button onclick="toggleNav()">Or click to toggle</button>
+    </div>
+    <div class="content">
+        <button onclick="alert('beep beep')">Vroom vroom</button>
+        <p>Here's an form I guess</p>
+
+        <form action="javascript:void(0);">
+            <input placeholder="favorite color">
+            <input type="date">
+        </form>
+    </div>
+
+</body>
+
+</html>
