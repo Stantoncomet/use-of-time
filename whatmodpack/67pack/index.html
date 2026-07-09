@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wm</title>
+    <script src="../html_builder.js"></script>
+    <script src="../app.js"></script>
+    <script src="why.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="special.css">
+</head>
+
+<body>
+    <a href="../" style="position: absolute; left: 0;">Back</a>
+
+   <h1 class="name">The 67 Pack</h1>
+    <p class="sub">Summer 2026</p>
+    <p class="desc">this pack was named by weston moore. "67" he says.</p>
+    <p class="desc">IP:  <b><i><u> stantoncomet.gleeze.com:24454</b></i></u></p>
+
+    <div id="info-desc-box">
+        <div class="desc desc2">
+            <p><b>Downloads -></b></p>
+            <div>
+            <a href="https://www.dropbox.com/scl/fi/8mje5reua3g2i21mf9ydq/the-67-pack-PRISM-PACK.zip?rlkey=iy7frj937sdukj20kauygjgq0&st=9zgf39ip&dl=1" class="download">Prism Launcher (zip)</a>
+            <a href="https://www.dropbox.com/scl/fi/03y7m8v5smo3p99gsy2hg/the-67-pack-CURSEFORGE-PACK.zip?rlkey=ovi8kcin0kf7dkjb94cagypnx&st=3u8uvv8i&dl=1" class="download">CurseForge (zip)</a>
+            <a href="https://www.dropbox.com/scl/fi/qr3iklji0gje53plm2pf8/the-67-pack-MODRINTH-PACK.mrpack?rlkey=3omhakxdpxp6aawd1tlijnkmh&st=33132msf&dl=1" class="download">Modrinth (mrpack)</a>
+            </div>
+        </div>
+        <div class="desc desc2">
+            <p><b>The Gleeze </b><u><span id="server-status" title="no players here">...</span></u></p>
+
+        </div>
+    </div>
+
+    <input id="ml-input" style="display: none; visibility: hidden;">
+    <h1>These Mods:</h1>
+
+    <div id="filterer">
+        <span>Fliter by</span>
+        <button onclick="filterList('all')">All mods</button>
+        <button onclick="filterList('client')">Client mods</button>
+        <button onclick="filterList('server')">Server mods</button>
+        <span>No libraries</span><input type="checkbox" id="lib-tog" onchange="filterList(cur_filter)">
+        <p><span id="mod-count">Shown: 0 </span><span id="net-info"></span></p>
+    </div>
+
+    <div id="modlist">
+        <p id="loading"></p>
+    </div>
+
+</body>
+
+</html>
