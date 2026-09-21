@@ -1,8 +1,8 @@
 
 /*
 TODO
-- level loading/saving
 - bounds detection?
+- limited number of direction tiles
 - end block
 - select tool
   - delete
@@ -10,7 +10,7 @@ TODO
 
 */
 
-let editor_mode = true
+let editor_mode = false
 
 let canvas = document.getElementById("game");
 let ctx = canvas.getContext("2d");
@@ -88,6 +88,10 @@ class Block {
 			case "-y": {
 				return "^#A13D63"
 				break;
+      }
+      case "wall": {
+        return "=#54414E"
+        break;
       }
       case "spawn": {
         return "*#F61067"
@@ -249,7 +253,12 @@ function logicLoop() {
 					ball.vx = 0
 					ball.vy = -SPEED
 					break;
-				}
+        }
+        case "wall": {
+          ball.vx = 0;
+          ball.vy = 0;
+          break;
+        }
 
 				default: {}
 
@@ -305,6 +314,17 @@ function place() {
     return;
   }
 
+  // no replace walls
+  let is_wall = false
+  if (!editor_mode) {
+    objects.forEach(o => {
+      if (o.x == ox && o.y == oy && o.type == "wall")
+        is_wall = true
+    })
+  }
+  if (is_wall)
+    return
+
 	// remove blocks at same position
 	objects.forEach((o, i) => {
 		if (o.x == ox && o.y == oy)
@@ -345,14 +365,24 @@ function loadLevel(e) {
 	e.blur()
   level_name = document.getElementById("save-name").value
 
-  // get level from levels.js prob
-
 
   // smth like this
 	if (levels[level_name] == null) {
 		document.getElementById("feedback").innerText = `No level found "${level_name}"`
 		return
-	}
+  }
+
+	// get level from levels.js and load shit
+	level = levels[level_name]
+  objects = []
+  level.objects.forEach(o => {
+  	objects.push(new Block(o.x, o.y, o.type))
+  })
+
+  u = level.u
+  offset = level.offset
+  ball.sx = level.ball_spawn.x
+  ball.sy = level.ball_spawn.y
 
 	document.getElementById("feedback").innerText = `Loaded level "${level_name}"`
 }

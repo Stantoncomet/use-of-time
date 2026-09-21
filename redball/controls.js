@@ -67,7 +67,20 @@ document.addEventListener("keypress", e => {
 			break;
 		}
 
-    // editor tools
+    default: {
+			break;
+		}
+  }
+
+  // editor tools
+  if (!editor_mode) return;
+
+  switch (e.key) {
+
+    case "r": {
+      current_block = "wall";
+      break;
+    }
 
 		// move view point
 		case "W": {
@@ -112,7 +125,8 @@ document.addEventListener("keypress", e => {
     }
 
     default: {
-			return;
-		}
-	}
+      break;
+    }
+  }
+
 })
