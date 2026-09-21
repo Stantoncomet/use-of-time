@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Red Ball</title>
+<link rel="stylesheet" href="./style.css">
+<!-- for cloning shit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.js"></script>
+</head>
+<body>
+<p id="title">Red Ball, a <u>game</u> by OM</p>
+
+<canvas id="game" width="1080" height="520"></canvas>
+<div>
+<button onclick="resetFeild()">Reset</button>
+<button onclick="spawnBall()">Ball</button>
+<button onclick="current_block = '+x'">-></button>
+<button onclick="current_block = '-x'"><-</button>
+<button onclick="current_block = '+y'">\/</button>
+<button onclick="current_block = '-y'">/\</button>
+<button onclick="current_block = 'erase'">X</button>
+
+<!--<input type="range" min="1" max="10" value="5" id="view-scale"></input>-->
+
+<span style="display:inline-block; width:30px"></span>
+<span id="tick-display">Tick Rate: 50ms </span>
+<button onclick="changeTickDelay(-5, this)" style="width:22px">-</button>
+<button onclick="changeTickDelay(5, this)">+</button>
+
+<span style="display:inline-block; width:30px"></span>
+<button onclick="loadLevel(this)">Load</button>
+<input id="save-name"></input>
+<span id="feedback"></span>
+</div>
+
+
+<button id="info-button" onclick="toggleInfo(this)">&ensp;I&ensp;</button>
+<div id="info">
+<p>Controls</p>
+<ul>
+	<li>Use <span class="keybind">WASD</span> to select direction blocks.</li>
+	<li>Use <span class="keybind">Space</span> to run ball. Current board is saved until space is pressed again.</li>
+	<li>Use <span class="keybind">Space</span> again to reset ball and any changes made while ball was running.</li>
+	<li>Use <span class="keybind">E</span> to select eraser.</li>
+	<!--<li>While holding <span class="keybind">Shift</span>, using <span class="keybind">WASD</span> move perspective.</li>
+	<li>Use <span class="keybind">NM</span> to zoom.</li>-->
+	<li>Set window zoom level to 120% (<span class="keybind">ctrl</span> + <span class="keybind">+</span>).</li>
+	<li>Load levels using the text box below and the load button.</li>
+</ul>
+
+<p>Game</p>
+<ul>
+	<p>The ball moves at a constant speed. When it moves over a block,<br/>it will adopt the direction of the block, and the block will<br/>flip to the opposite direction.</p>
+	<p>Complete levels by moving ball to the goal.</p>
+</ul>
+</div>
+
+</body>
+
+
+<script src="game_src.js"></script>
+<script src="controls.js"></script>
+</html>
