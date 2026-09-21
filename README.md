@@ -6,5 +6,6 @@ ugh
 - Make Starshow includable with an http link
 - Fix Desmate for Chrome
 ## FINISHED
+- Red Ball sim
 - Starshow meat!
 - make a visual novel engine
