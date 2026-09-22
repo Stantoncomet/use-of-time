@@ -21,6 +21,7 @@ canvas.addEventListener("mouseup", () => {
 
 
 document.addEventListener("keypress", e => {
+  if (level_complete) return;
 
 	switch (e.key) {
 		case "d": {
@@ -113,13 +114,33 @@ document.addEventListener("keypress", e => {
     }
 
     // place ball spawn
-    case "q": {
+    case "b": {
       current_block = "spawn";
       break;
     }
 
-    // save level
+    // place goal
+    case "g": {
+      current_block = "goal";
+      break;
+    }
+    // button/trigger
     case "t": {
+      current_block = "trigger";
+      break;
+    }
+    // door/yoor
+    case "y": {
+      current_block = "closeddoor";
+      break;
+    }
+    case "h": {
+      current_block = "opendoor";
+      break;
+    }
+
+    // save level (print to console)
+    case "p": {
       saveLevel();
       break;
     }

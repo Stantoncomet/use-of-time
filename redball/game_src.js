@@ -2,20 +2,26 @@
 /*
 TODO
 - bounds detection?
+- button/trigger
 - limited number of direction tiles
-- end block
 - select tool
   - delete
   - copy/paste
 
 */
 
-let editor_mode = false
+let editor_mode = true
+
+let level_complete = false;
+let current_level = 1;
 
 let canvas = document.getElementById("game");
 let ctx = canvas.getContext("2d");
 
 let current_block = "+x"
+
+let gx = -1
+let gy = -1
 
 let MOUSE = {
 	x: 0,
@@ -38,6 +44,9 @@ let tick_delay = 50
 let first_canvas = true
 
 let mouse_down = false
+
+let c_background = "#351E29"
+let c_gridlines = "#ffffff"
 
 // Speed button
 function changeTickDelay(delta, e) {
@@ -95,6 +104,22 @@ class Block {
       }
       case "spawn": {
         return "*#F61067"
+        break;
+      }
+      case "goal": {
+        return "+#F61067"
+        break;
+      }
+      case "trigger": {
+        return "+#41D3BD"
+        break;
+      }
+      case "closeddoor": {
+        return "I#E85F5C"
+        break;
+      }
+      case "opendoor": {
+        return ":#ACF39D"
         break;
       }
 			default: {
@@ -172,12 +197,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function gameloop() {
 	// background
-	ctx.fillStyle = "#351E29"
+  ctx.fillStyle = c_background;
 	ctx.fillRect(0,0,1080,520)
 
 	// grid
 	for (let i=0; i<1080/u; i++) {
-		ctx.strokeStyle = "#fff"
+    ctx.strokeStyle = c_gridlines;
 		if (!is_reset)
 			ctx.strokeStyle = "#faa"
 		ctx.lineWidth = 1
@@ -198,6 +223,11 @@ function gameloop() {
 	objects.forEach(o => {
 		o.draw()
 	})
+
+
+	// goal
+  drawSquare(gx * u, gy * u, u, "#F61067")
+	drawCircle(gx * u, gy * u, "#351E29", false)
 
 	// starting pos
 	drawSquare(ball.sx*u, ball.sy*u, .25*u, "#F61067")
@@ -254,6 +284,7 @@ function logicLoop() {
 					ball.vy = -SPEED
 					break;
         }
+        case "closeddoor": { }
         case "wall": {
           ball.vx = 0;
           ball.vy = 0;
@@ -262,7 +293,29 @@ function logicLoop() {
 
 				default: {}
 
-			}
+      }
+		// check for goal reached, since the goal isn't a real object
+    } else if (ball.x == gx && ball.y == gy && !level_complete) {
+      ball.vx = 0;
+      ball.vy = 0;
+      if (editor_mode) return;
+
+      c_background = "#000000";
+      c_gridlines = "#000000";
+      is_reset = true;
+      level_complete = true;
+
+      setTimeout(() => {
+        resetFeild();
+        current_level++;
+
+        level_complete = false;
+        first_canvas = true;
+        c_background = "#351E29";
+        c_gridlines = "#ffffff";
+
+        loadLevel("", `level${current_level}`);
+      }, 1000)
 		}
 
 	})
@@ -288,12 +341,15 @@ function drawSquare(x, y, w=u, color="#ff0", centered=false, absolute=false) {
 	}
 }
 
-function drawCircle(x, y) {
+function drawCircle(x, y, color="#F61067", absolute=true) {
 	let r = u/2-2
 	ctx.beginPath();
-	ctx.fillStyle = "#F61067"
-	ctx.arc(x+u/2, y+u/2, r, 0, 2 * Math.PI);
-	ctx.fill()
+  ctx.fillStyle = color;
+  if (absolute)
+    ctx.arc(x+u/2, y+u/2, r, 0, 2 * Math.PI);
+  else
+    ctx.arc(offset.x*u+x+u/2, offset.y*u+y+u/2, r, 0, 2 * Math.PI);
+  ctx.fill()
 	ctx.lineWidth = 1
 	ctx.strokeStyle = "#ccc"
 	ctx.stroke();
@@ -301,6 +357,8 @@ function drawCircle(x, y) {
 
 
 function place() {
+  if (level_complete) return;
+
 	let ox = Math.floor(MOUSE.x/u)
 	let oy = Math.floor(MOUSE.y/u)
 
@@ -313,12 +371,18 @@ function place() {
     ball.sy = oy;
     return;
   }
+  // goal set
+  else if (current_block == "goal") {
+    gx = ox;
+    gy = oy;
+    return;
+  }
 
-  // no replace walls
+  // no replace walls or goal
   let is_wall = false
   if (!editor_mode) {
     objects.forEach(o => {
-      if (o.x == ox && o.y == oy && o.type == "wall")
+      if ((o.x == ox && o.y == oy && (o.type == "wall")) || (gx == ox && gy == oy))
         is_wall = true
     })
   }
@@ -333,7 +397,13 @@ function place() {
 
 	// eraser
 	if (current_block != "erase")
-		objects.push(new Block(ox, oy, current_block))
+    objects.push(new Block(ox, oy, current_block))
+
+
+	// triggers/doors
+  if (current_block == "trigger") {
+    current_block = "closeddoor"
+  }
 }
 
 function resetFeild() {
@@ -361,9 +431,12 @@ function spawnBall() {
 }
 
 
-function loadLevel(e) {
-	e.blur()
-  level_name = document.getElementById("save-name").value
+function loadLevel(e = "", l_name = "") {
+  level_name = l_name;
+  if (e != "") {
+    e.blur();
+    level_name = document.getElementById("save-name").value;
+  }
 
 
   // smth like this
@@ -383,6 +456,8 @@ function loadLevel(e) {
   offset = level.offset
   ball.sx = level.ball_spawn.x
   ball.sy = level.ball_spawn.y
+  gx = level.goal.x
+  gy = level.goal.y
 
 	document.getElementById("feedback").innerText = `Loaded level "${level_name}"`
 }
@@ -412,6 +487,10 @@ function saveLevel() {
     ball_spawn: {
       x: ball.sx,
       y: ball.sy
+    },
+    goal: {
+      x: gx,
+      y: gy
     },
     objects: save_objects
   }
