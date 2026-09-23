@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Social</title>
+<link rel="stylesheet" href="./style.css">
+<script defer src="./common.js"></script>
+<script defer src="./html_builder.js"></script>
+<script defer src="./app.js"></script>
+</head>
+
+<body>
+    <h1>Welcome!</h1>
+    <p id="status">Network is: pending</p>
+    <p>Write anything to this here board:</p>
+
+    <form id="input" autocomplete="off" onsubmit="return false">
+        <input id="content">
+        <button onclick="post()">Post</button>
+    </form>
+
+    <div id="board"></div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+* {
+    /*background-color: black;*/
+    color: white;
+
+}
+
+body {
+    margin: 0px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#input * {
+    background-color: black;
+
+}
+
+#board {
+    position: absolute;
+    z-index: -1;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: black;
+    display: block;
+
+    overflow: hidden;
+}
+
+#board p {
+    position: absolute;
+    width: max-content;
+    max-width: 200px;
+    margin: 0px;
+}
