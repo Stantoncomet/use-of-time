@@ -61,9 +61,21 @@ async function checkForNewPosts() {
 
 // POST
 async function post() {
+
+  // get content
+  let content = valOfId('content').trim()
+  if (content == "") return;
+  // check if it's already in the the post list
+  let current_posts = []
+  document.getElementById('board').querySelectorAll('p').forEach(p => {
+    current_posts.push(p.innerHTML);
+  })
+  if (current_posts.indexOf(content) != -1) {
+    window.location.reload();
+    return;
+  }
+
   // post to server
-  let content = valOfId('content');
-  if (content.trim() == "") return;
   await postPost({ timestamp: Date.now(), content: content });
 
   // update client
