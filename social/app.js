@@ -2,6 +2,10 @@ let post_pos = []
 
 // WINDOW LOAD
 window.onload = async () => {
+  setInterval(updateLoop, 20);
+  // check for new posts every 5 seconds
+  setInterval(checkForNewPosts, 5000);
+
   // check status
   let online = await fetchStatus();
   if (online)
@@ -18,9 +22,7 @@ window.onload = async () => {
 
   })
 
-  setInterval(updateLoop, 20);
-  // check for new posts every 5 seconds
-  setInterval(checkForNewPosts, 5000);
+
 }
 
 function updateLoop() {
