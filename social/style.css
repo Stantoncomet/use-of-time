@@ -39,30 +39,3 @@ body {
     max-width: 120px;
     margin: 0px;
 }
-
-/*@media (orientation: portrait) {
-
-    h1 {
-        font-size: 8em;
-    }
-    p {
-        font-size: 2em;
-        font-weight: bolder;
-    }
-
-    #input * {
-        font-size: 2em;
-    }
-
-    #input input {
-        border: white solid 2px;
-    }
-
-    #board p {
-        font-size: 30px;
-
-        max-width: 300px;
-
-
-    }
-}*/

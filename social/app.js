@@ -18,11 +18,14 @@ window.onload = async () => {
 
   })
 
-  setInterval(updateLoop, 20)
+  setInterval(updateLoop, 20);
+  // check for new posts every second
+  setInterval(checkForNewPosts, 1000);
 }
 
 function updateLoop() {
-  console.log(post_pos.length)
+
+  // drift posts
   post_pos.forEach((_, i) => {
     drift(eleOfId(i), i);
   })
@@ -38,6 +41,20 @@ function drift(e, idx) {
   post_pos[idx].y += post_pos[idx].vy;
   e.style.left = post_pos[idx].x;
   e.style.top = post_pos[idx].y;
+}
+
+async function checkForNewPosts() {
+  // fetch all posts
+  let new_posts = await fetchPosts().then(data => data.posts);
+
+  let new_post_count = new_posts.length;
+  let cur_post_count = post_pos.length;
+
+  if (new_post_count > cur_post_count) {
+    for (let i = cur_post_count; i < new_post_count; i++) {
+      newPost(new_posts[i].content, i)
+    }
+  }
 }
 
 
