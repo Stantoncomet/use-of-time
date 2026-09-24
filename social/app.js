@@ -19,8 +19,8 @@ window.onload = async () => {
   })
 
   setInterval(updateLoop, 20);
-  // check for new posts every second
-  setInterval(checkForNewPosts, 1000);
+  // check for new posts every 5 seconds
+  setInterval(checkForNewPosts, 5000);
 }
 
 function updateLoop() {
