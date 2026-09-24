@@ -40,7 +40,7 @@ body {
     margin: 0px;
 }
 
-@media (orientation: portrait) {
+/*@media (orientation: portrait) {
 
     h1 {
         font-size: 8em;
@@ -65,4 +65,4 @@ body {
 
 
     }
-}
+}*/
