@@ -43,10 +43,10 @@ body {
 @media (orientation: portrait) {
 
     h1 {
-        font-size: 10em;
+        font-size: 8em;
     }
     p {
-        font-size: 3em;
+        font-size: 2em;
         font-weight: bolder;
     }
 
@@ -54,9 +54,15 @@ body {
         font-size: 2em;
     }
 
+    #input input {
+        border: white solid 2px;
+    }
+
     #board p {
         font-size: 30px;
 
-        max-width: 400px;
+        max-width: 300px;
+
+
     }
 }
