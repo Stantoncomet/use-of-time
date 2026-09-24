@@ -4,14 +4,6 @@
 
 }
 
-h1 {
-    font-size: 10em;
-}
-p {
-    font-size: 3em;
-    font-weight: bolder;
-}
-
 body {
     margin: 0px;
     height: 100%;
@@ -23,8 +15,6 @@ body {
 
 #input * {
     background-color: black;
-
-    font-size: 2em;
 }
 
 #board {
@@ -44,8 +34,27 @@ body {
     position: absolute;
     width: max-content;
 
-    font-size: 30px;
-
-    max-width: 400px;
+    max-width: 200px;
     margin: 0px;
+}
+
+@media (max-width: 450px) {
+
+    h1 {
+        font-size: 10em;
+    }
+    p {
+        font-size: 3em;
+        font-weight: bolder;
+    }
+
+    #input * {
+        font-size: 2em;
+    }
+
+    #board p {
+        font-size: 30px;
+
+        max-width: 400px;
+    }
 }
