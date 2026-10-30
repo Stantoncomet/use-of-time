@@ -1,0 +1,34 @@
+* {
+    font-family: "Courier New", Courier, monospace;
+    color: white;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    align-items: center;
+
+    background-color: black;
+}
+
+button {
+    background-color: black;
+}
+
+canvas {
+    border: solid white 1px;
+    margin: 10px;
+}
+
+#sliders {
+    position: absolute;
+    right: 0;
+    margin: 50px;
+}
+
+#sliders * {
+    margin: 0;
+    padding: 0;
+}

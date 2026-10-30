@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tree</title>
+        <script src="../Starshow/src/2d_players_lib.js" defer></script>
+        <script src="./TreeNode.js" defer></script>
+        <script src="./app.js" defer></script>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <h1>Fractal Tree</h1>
+        <button onclick="simulate()">Simulate</button>
+        <div id="sliders">
+            <p>generations</p>
+            <input
+                min="0"
+                max="10"
+                value="3"
+                type="range"
+                autocomplete="off"
+                onchange="generations = this.value"
+            />
+            <p>branches</p>
+            <input
+                min="0"
+                max="10"
+                value="5"
+                type="range"
+                autocomplete="off"
+                onchange="fixed_branches = this.value"
+            />
+            <p>line size</p>
+            <input
+                min="0"
+                max="200"
+                value="20"
+                type="range"
+                autocomplete="off"
+                onchange="line_size = this.value"
+            />
+            <p>delay</p>
+            <input
+                min="0"
+                max="1000"
+                value="250"
+                type="range"
+                autocomplete="off"
+                onchange="gen_delay = this.value"
+            />
+        </div>
+    </body>
+</html>
