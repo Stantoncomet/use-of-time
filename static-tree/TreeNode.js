@@ -26,9 +26,10 @@ class TreeNode {
   }
 
   drawChildLines() {
-    this.children.forEach((c) => {
+    this.children.forEach((c, i) => {
       drawLine(this.x, this.y, c.x, c.y, "white", 1);
-      drawCircle(c.x, c.y, 6, "rgba(255, 0, 0, 0.2)");
+      let r = (i * 255) / this.children.length;
+      drawCircle(c.x, c.y, 6, `rgba(${r}, 0, 100, 1)`);
     });
   }
 }
