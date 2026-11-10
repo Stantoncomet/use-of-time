@@ -1,0 +1,94 @@
+:root {
+    /* https://coolors.co/3c1518-69140e-a44200-d58936-fff94f */
+    --c1: #3C1518;
+    --c2: #69140E;
+    --c3: #A44200;
+    --c4: #D58936;
+    --c5: #FFF94F;
+}
+
+/* Global stuff */
+* {
+    /* font-family:
+        "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+        Arial, sans-serif; */
+
+    margin: 0px;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+}
+
+/* HEADER */
+header {
+    background-color: grey;
+    color: black;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+header h1 {
+    background-image: url("./assets/hot.gif");
+    background-size: contain;
+}
+
+#navbar {
+    /* height: 40px; */
+    display: flex;
+    align-items: center;
+}
+
+#navbar a {
+    margin: 10px;
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+#navbar a:hover {
+    background-color: gainsboro;
+}
+
+/* BODY and main content */
+#main {
+    background-color: gainsboro;
+    /* height: 100%; */
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* text-align: center; */
+    /* padding: 10vw; */
+}
+
+.topic {
+    margin: 6vw;
+    max-width: 500px;
+    min-width: 200px;
+    
+}
+.topic h1 {
+    text-decoration: underline;
+}
+.topic p {
+    margin-bottom: 1vw;
+}
+
+
+
+/* FOOTER */
+footer {
+    font-size: small;
+    align-self: center;
+}

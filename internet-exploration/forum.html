@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forum</title>
+    <script src="./html_builder.js" defer></script>
+    <script src="./shared.js" defer></script>
+    <script src="./forum.js" defer></script>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./forum.css">
+</head>
+
+<body>
+    <header>
+        <h1>Forum</h1>
+        <div id="navbar">
+            <a href="./">Home</a>
+            <a href="./forum.html">Forum</a>
+            <a href="./social.html">Social Media</a>
+        </div>
+    </header>
+    <div id="main">
+        <h1></h1>
+        <div id="discussions" class="posts">
+
+
+            <!-- ACTIVE DISCUSSIONS -->
+            <div class="fpost forum" onclick="loadDiscussion('iamgay', 2)">
+                <div>
+                    <img src="assets/pfp.jpg" width="100">
+                    <p class="username">Anon</p>
+                    <!-- <p class="timestamp">0</p> -->
+                </div>
+                <p>I am Gay</p>
+            </div>
+            <div class="fpost forum" onclick="loadDiscussion('creeper', 1)">
+                <div>
+                    <img src="assets/pfp.jpg" width="100">
+                    <p class="username">Anon</p>
+                    <!-- <p class="timestamp">0</p> -->
+                </div>
+                <p>Just wanna talk</p>
+            </div>
+            <div class="fpost forum" onclick="loadDiscussion('femboy', 1)">
+                <div>
+                    <img src="assets/pfp.jpg" width="100">
+                    <p class="username">Anon</p>
+                    <!-- <p class="timestamp">0</p> -->
+                </div>
+                <p>I'm curious but also nervous</p>
+            </div>
+
+        </div>
+        <div id="current-discussion" class="posts">
+            <div id="return-btn" onclick="unloadDiscussion()">
+                <p>Return ➫</p>
+            </div>
+            <!-- <div class="fpost">
+                <div>
+                    <img src="assets/pfp.jpg" width="100">
+                    <p class="username">username 2</p>
+                    <p class="timestamp">0</p>
+                </div>
+                <p>This is a wacky response lol!</p>
+            </div> -->
+
+            
+        </div>
+
+        <div class="fpost"></div>
+        <div class="fpost"></div>
+        <div class="fpost"></div>
+        <div class="fpost"></div>
+
+    </div>
+
+    <footer>
+        <p>website made from scratch, with ♥ (and no ai)</p>
+    </footer>
+</body>
+
+</html>

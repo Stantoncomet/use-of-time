@@ -1,0 +1,57 @@
+header {
+    position: fixed;
+    width: 100%;
+}
+
+#main {
+    margin: 0;
+    padding-top: 100px;
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    
+}
+
+#main > h1 {
+    background-color: white;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: solid black 2px;
+    margin-bottom: 1vw;
+}
+
+.spost {
+    background-color: white;
+    width: 400px;
+    margin-bottom: 20px;
+}
+
+.spost h1 {
+    padding: 10px;
+}
+
+.spost > img {
+    width: 100%;
+}
+
+.spost div {
+    display: flex;
+    align-items: center;
+}
+
+.spost div p {
+    margin-left: 3vw;
+    /* font-size: large; */
+}
+
+.spost div img {
+    width: 50px;
+    height: 50px;
+}
+
+.spost>p {
+    padding: 0.5vw;
+}
